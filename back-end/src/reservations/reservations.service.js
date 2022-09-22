@@ -20,7 +20,8 @@ function updateReservationStatus(reservationId, reservationStatus) {
   return knex("reservations")
     .select("*")
     .where({ reservation_id: reservationId })
-    .update({ status: reservationStatus });
+    .update({ status: reservationStatus })
+    .returning("*");
 }
 
 function listReservations(date) {

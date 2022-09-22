@@ -3,12 +3,14 @@ import ReservationCard from "./ReservationCard";
 
 export default function ReservationsList({ reservations }) {
   const reservationsList = reservations.map((reservation) => {
-    return (
-      <ReservationCard
-        key={reservation.reservation_id}
-        reservation={reservation}
-      />
-    );
+    if (reservation.status !== "Finished") {
+      return (
+        <ReservationCard
+          key={reservation.reservation_id}
+          reservation={reservation}
+        />
+      );
+    }
   });
 
   return (

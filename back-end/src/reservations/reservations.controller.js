@@ -16,7 +16,7 @@ function bodyDataHas(propertyName) {
   };
 }
 
-function reservationDatePropertyIsValid(req, res, next) {
+function datePropertyIsValid(req, res, next) {
   const { reservation_date } = req.body.data;
   const dateFormat = /^\d{4}-\d{1,2}-\d{1,2}$/;
   if (dateFormat.test(reservation_date)) {
@@ -29,7 +29,7 @@ function reservationDatePropertyIsValid(req, res, next) {
   }
 }
 
-function reservationTimePropertyIsValid(req, res, next) {
+function timePropertyIsValid(req, res, next) {
   const { reservation_time } = req.body.data;
   const timeFormat = /\d\d:\d\d/;
   if (timeFormat.test(reservation_time)) {
@@ -95,7 +95,9 @@ function reservationIsForOpenHours(req, res, next) {
 
 async function reservationExists(req, res, next) {
   const reservationId = req.params.reservation_id;
-  const existingReservation = await reservationsService.readReservation(reservationId);
+  const existingReservation = await reservationsService.readReservation(
+    reservationId
+  );
   if (existingReservation) {
     return next();
   } else {
@@ -108,7 +110,7 @@ async function reservationExists(req, res, next) {
 
 function statusPropertyIsValid(req, res, next) {
   const { status } = req.body.data;
-  const validStatuses = ["Booked", "Seated", "Finished"];
+  const validStatuses = ["booked", "seated", "finished"];
   if (validStatuses.includes(status)) {
     return next();
   } else {
@@ -120,26 +122,25 @@ function statusPropertyIsValid(req, res, next) {
 }
 
 function statusPropertyIsNotFinished(req, res, next) {
-  const status = res.locals.reservation.status;
-  if (status !== "Finished") {
+  const status = req.body.data.status;
+  if (status === "finished") {
     return next();
   } else {
     return next({
       status: 400,
-      message: `Finished reservations cannot be updated.`,
+      message: `A finished reservation cannot be updated.`,
     });
   }
 }
 
-function statusPropertyIsBookedForNewReservation(req, res, next) {
+function statusPropertyIsBooked(req, res, next) {
   const status = req.body.data.status;
-  console.log(status);
-  if (status == "Booked") {
+  if (status == "booked") {
     return next();
   } else {
     return next({
       status: 400,
-      message: `${status} is an invalid status. The status for a new reservation must be 'booked'.`,
+      message: `${status} is an invalid status for a new reservation.`,
     });
   }
 }
@@ -148,7 +149,9 @@ function statusPropertyIsBookedForNewReservation(req, res, next) {
 
 async function createReservation(req, res) {
   const newReservation = req.body.data;
-  const responseData = await reservationsService.createReservation(newReservation);
+  const responseData = await reservationsService.createReservation(
+    newReservation
+  );
   res.status(201).json({ data: responseData });
 }
 
@@ -190,15 +193,19 @@ module.exports = {
     bodyDataHas("reservation_date"),
     bodyDataHas("reservation_time"),
     bodyDataHas("people"),
-    reservationDatePropertyIsValid,
-    reservationTimePropertyIsValid,
+    datePropertyIsValid,
+    timePropertyIsValid,
     peoplePropertyIsValid,
+    statusPropertyIsBooked,
     reservationIsNotForTuesday,
     reservationIsForFuture,
     reservationIsForOpenHours,
     asyncErrorBoundary(createReservation),
   ],
-  readReservation: [asyncErrorBoundary(reservationExists), asyncErrorBoundary(readReservation)],
+  readReservation: [
+    asyncErrorBoundary(reservationExists),
+    asyncErrorBoundary(readReservation),
+  ],
   updateReservationStatus: [
     bodyDataHas("status"),
     asyncErrorBoundary(reservationExists),

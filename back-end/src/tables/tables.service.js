@@ -14,11 +14,11 @@ function readTable(tableId) {
 function seatTable(tableId, reservationId) {
   return knex("reservations")
     .where({ reservation_id: reservationId })
-    .update({ status: "Seated" })
+    .update({ status: "seated" })
     .then(() => {
       return knex("tables")
         .where({ table_id: tableId })
-        .update({ status: "Occupied", reservation_id: reservationId });
+        .update({ status: "occupied", reservation_id: reservationId });
     });
 }
 
@@ -26,11 +26,11 @@ function unseatTable(tableId, reservationId) {
   return knex("tables")
     .select("*")
     .where({ table_id: tableId })
-    .update({ status: "Free", reservation_id: null })
+    .update({ status: "free", reservation_id: null })
     .then(() => {
       return knex("reservations")
         .where({ reservation_id: reservationId })
-        .update({ status: "Finished" });
+        .update({ status: "finished" });
     });
 }
 

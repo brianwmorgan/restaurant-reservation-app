@@ -57,7 +57,9 @@ async function tableExists(req, res, next) {
 
 async function reservationExists(req, res, next) {
   const reservationId = req.body.data.reservation_id;
-  const existingReservation = await reservationsService.readReservation(reservationId);
+  const existingReservation = await reservationsService.readReservation(
+    reservationId
+  );
   if (existingReservation) {
     res.locals.reservation = existingReservation;
     return next();
@@ -96,12 +98,24 @@ function tableIsAvailable(req, res, next) {
 
 function tableIsOccupied(req, res, next) {
   const tableStatus = res.locals.table.status;
-  if (tableStatus === "Occupied") {
+  if (tableStatus === "occupied") {
     return next();
   } else {
     return next({
       status: 400,
       message: `This table is not occupied.`,
+    });
+  }
+}
+
+function reservationIsNotAlreadySeated(req, res, next) {
+  const status = res.locals.reservation.status;
+  if (status !== "seated") {
+    return next();
+  } else {
+    return next({
+      status: 400,
+      message: `Reservation is already seated.`,
     });
   }
 }
@@ -156,6 +170,7 @@ module.exports = {
     asyncErrorBoundary(reservationExists),
     tableHasCapacity,
     tableIsAvailable,
+    reservationIsNotAlreadySeated,
     asyncErrorBoundary(seatTable),
   ],
   unseatTable: [
