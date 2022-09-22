@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import useQuery from "../utils/useQuery";
-import axios from "axios";
 import { listReservations, listTables } from "../utils/api";
 import { today, previous, next } from "../utils/date-time";
 import ReservationsList from "../reservations/ReservationsList";
