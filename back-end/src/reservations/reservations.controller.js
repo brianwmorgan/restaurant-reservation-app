@@ -106,6 +106,31 @@ async function reservationExists(req, res, next) {
   }
 }
 
+function statusPropertyIsValid(req, res, next) {
+  const { status } = req.body.data;
+  const validStatuses = ["Booked", "Seated", "Finished"];
+  if (validStatuses.includes(status)) {
+    return next();
+  } else {
+    return next({
+      status: 400,
+      message: `Status unknown: Status must be booked, seated, or finished.`,
+    });
+  }
+}
+
+function statusPropertyIsNotFinished(req, res, next) {
+  const status = res.locals.reservation.status;
+  if (status !== "Finished") {
+    return next();
+  } else {
+    return next({
+      status: 400,
+      message: `Finished reservations cannot be updated.`,
+    });
+  }
+}
+
 // HTTP REQUEST HANDLERS FOR 'RESERVATIONS' RESOURCES //
 
 async function create(req, res) {
@@ -117,6 +142,16 @@ async function create(req, res) {
 async function read(req, res, next) {
   const reservationId = req.params.reservation_id;
   const responseData = await reservationsService.read(reservationId);
+  res.status(200).json({ data: responseData });
+}
+
+async function updateReservationStatus(req, res, next) {
+  const reservationId = req.params.reservation_id;
+  const reservationStatus = req.body.data.status;
+  const responseData = await reservationsService.updateReservationStatus(
+    reservationId,
+    reservationStatus
+  );
   res.status(200).json({ data: responseData });
 }
 
@@ -151,5 +186,12 @@ module.exports = {
     asyncErrorBoundary(create),
   ],
   read: [asyncErrorBoundary(reservationExists), asyncErrorBoundary(read)],
+  updateReservationStatus: [
+    bodyDataHas("status"),
+    asyncErrorBoundary(reservationExists),
+    statusPropertyIsValid,
+    statusPropertyIsNotFinished,
+    asyncErrorBoundary(updateReservationStatus),
+  ],
   list: [asyncErrorBoundary(list)],
 };
