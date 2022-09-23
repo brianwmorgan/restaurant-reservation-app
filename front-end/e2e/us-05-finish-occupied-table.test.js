@@ -79,23 +79,28 @@ describe("US-05 - Finish an occupied table - E2E", () => {
         );
         await dialog.accept();
       });
+      console.log("82")
 
       await page.click(finishButtonSelector);
+      console.log("85")
 
       await page.waitForResponse((response) => {
         return response.url().endsWith(`/tables`);
       });
+      console.log("90")
 
       await page.screenshot({
         path: ".screenshots/us-05-dashboard-finish-button-after.png",
         fullPage: true,
       });
+      console.log("96")
 
       const containsFree = await containsText(
         page,
         `[data-table-id-status="${table.table_id}"]`,
         "free"
       );
+      console.log("103")
 
       expect(containsFree).toBe(true);
     });
@@ -123,10 +128,10 @@ describe("US-05 - Finish an occupied table - E2E", () => {
         );
         await dialog.dismiss();
       });
-
+      
       await page.click(finishButtonSelector);
 
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(7500);
 
       await page.screenshot({
         path: ".screenshots/us-05-dashboard-finish-button-cancel-after.png",

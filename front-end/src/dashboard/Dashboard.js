@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useQuery from "../utils/useQuery";
-import { listReservations, listTables } from "../utils/api";
+import { listReservations, listTables, finishTable } from "../utils/api";
 import { today, previous, next } from "../utils/date-time";
 import ReservationsList from "../reservations/ReservationsList";
 import TablesList from "../tables/TablesList";
@@ -56,6 +56,12 @@ function Dashboard({ date }) {
   //   return () => abortController.abort();
   // }, [URL]);
 
+  function onFinish(table_id, reservation_id) {
+    finishTable(table_id, reservation_id)
+      .then(loadDashboard)
+      .catch(setTablesError);
+  }
+
   return (
     <main>
       <div>
@@ -96,7 +102,7 @@ function Dashboard({ date }) {
           <h4>Tables</h4>
         </div>
         <div>
-          <TablesList tables={tables} />
+          <TablesList tables={tables} onFinish={onFinish} />
         </div>
       </div>
     </main>
