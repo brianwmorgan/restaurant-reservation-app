@@ -18,10 +18,9 @@ function readReservation(reservationId) {
 
 function updateReservationStatus(reservationId, reservationStatus) {
   return knex("reservations")
-    .select("*")
     .where({ reservation_id: reservationId })
     .update({ status: reservationStatus })
-    .returning("*");
+    .returning("status");
 }
 
 function listReservations(date) {
@@ -29,9 +28,10 @@ function listReservations(date) {
     return knex("reservations")
       .select("*")
       .where({ reservation_date: date })
+      .whereNot({ status: "finished" })
       .orderBy("reservation_time");
   } else {
-    return knex("reservations").select("*");
+    return knex("reservations").select("*").whereNot({ status: "finished" });
   }
 }
 

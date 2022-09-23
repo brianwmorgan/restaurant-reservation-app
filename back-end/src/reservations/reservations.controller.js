@@ -133,9 +133,9 @@ function statusPropertyIsNotFinished(req, res, next) {
   }
 }
 
-function statusPropertyIsBooked(req, res, next) {
+function statusPropertyIsNotSeatedOrFinished(req, res, next) {
   const status = req.body.data.status;
-  if (status == "booked") {
+  if (status !== "seated" && status !== "finished") {
     return next();
   } else {
     return next({
@@ -196,10 +196,10 @@ module.exports = {
     datePropertyIsValid,
     timePropertyIsValid,
     peoplePropertyIsValid,
-    statusPropertyIsBooked,
     reservationIsNotForTuesday,
     reservationIsForFuture,
     reservationIsForOpenHours,
+    statusPropertyIsNotSeatedOrFinished,
     asyncErrorBoundary(createReservation),
   ],
   readReservation: [
