@@ -16,7 +16,7 @@ function bodyDataHas(propertyName) {
   };
 }
 
-function reservationDatePropertyIsValid(req, res, next) {
+function datePropertyIsValid(req, res, next) {
   const { reservation_date } = req.body.data;
   const dateFormat = /^\d{4}-\d{1,2}-\d{1,2}$/;
   if (dateFormat.test(reservation_date)) {
@@ -29,7 +29,7 @@ function reservationDatePropertyIsValid(req, res, next) {
   }
 }
 
-function reservationTimePropertyIsValid(req, res, next) {
+function timePropertyIsValid(req, res, next) {
   const { reservation_time } = req.body.data;
   const timeFormat = /\d\d:\d\d/;
   if (timeFormat.test(reservation_time)) {
@@ -99,11 +99,61 @@ async function reservationExists(req, res, next) {
     reservationId
   );
   if (existingReservation) {
+    res.locals.reservation = existingReservation;
     return next();
   } else {
     return next({
       status: 404,
       message: `Reservation ${reservationId} does not exist.`,
+    });
+  }
+}
+
+function statusPropertyIsNotSeatedOrFinished(req, res, next) {
+  const status = req.body.data.status;
+  if (status !== "seated" && status !== "finished") {
+    return next();
+  } else {
+    return next({
+      status: 400,
+      message: `${status} is an invalid status for a new reservation.`,
+    });
+  }
+}
+
+function statusPropertyIsValid(req, res, next) {
+  const { status } = req.body.data;
+  const validStatuses = ["booked", "seated", "finished", "cancelled"];
+  if (validStatuses.includes(status)) {
+    return next();
+  } else {
+    return next({
+      status: 400,
+      message: `Status unknown: Status must be booked, seated, or finished.`,
+    });
+  }
+}
+
+function statusPropertyIsNotFinished(req, res, next) {
+  const status = res.locals.reservation.status;
+  if (status !== "finished") {
+    return next();
+  } else {
+    return next({
+      status: 400,
+      message: `'finished' is an invalid status. Finished reservations cannot be updated.`,
+    });
+  }
+}
+
+function statusPropertyIsBooked(req, res, next) {
+  const status = res.locals.reservation.status;
+  if (status === "booked") {
+    return next();
+  } else {
+    return next({
+      status: 400,
+      message: `${status} is an invalid status. Only 'booked' reservations can be updated.`,
     });
   }
 }
@@ -118,20 +168,45 @@ async function createReservation(req, res) {
   res.status(201).json({ data: responseData });
 }
 
-async function readReservation(req, res, next) {
+async function readReservation(req, res) {
   const reservationId = req.params.reservation_id;
   const responseData = await reservationsService.readReservation(reservationId);
   res.status(200).json({ data: responseData });
 }
 
+async function updateReservation(req, res) {
+  const reservationId = res.locals.reservation.reservation_id;
+  const updatedReservation = req.body.data;
+  const responseData = await reservationsService.updateReservation(
+    reservationId,
+    updatedReservation
+  );
+  res.status(200).json({ data: responseData });
+}
+
+async function updateReservationStatus(req, res) {
+  const reservationId = req.params.reservation_id;
+  const newStatus = req.body.data.status;
+  responseData = await reservationsService.updateReservationStatus(
+    reservationId,
+    newStatus
+  );
+  res.status(200).json({ data: responseData });
+}
+
 async function listReservations(req, res) {
-  const { date } = req.query;
+  const { date, mobile_number } = req.query;
   if (date) {
     const responseData = await reservationsService.listReservations(date);
     res.status(200).json({ data: responseData });
+  } else if (mobile_number) {
+    const responseData = await reservationsService.listReservations(
+      null,
+      mobile_number
+    );
+    res.status(200).json({ data: responseData });
   } else {
-    const today = new Date().toISOString().slice(0, 10);
-    const responseData = await reservationsService.listReservations(today);
+    const responseData = await reservationsService.listReservations();
     res.status(200).json({ data: responseData });
   }
 }
@@ -146,17 +221,42 @@ module.exports = {
     bodyDataHas("reservation_date"),
     bodyDataHas("reservation_time"),
     bodyDataHas("people"),
-    reservationDatePropertyIsValid,
-    reservationTimePropertyIsValid,
+    datePropertyIsValid,
+    timePropertyIsValid,
     peoplePropertyIsValid,
     reservationIsNotForTuesday,
     reservationIsForFuture,
     reservationIsForOpenHours,
+    statusPropertyIsNotSeatedOrFinished,
     asyncErrorBoundary(createReservation),
   ],
   readReservation: [
     asyncErrorBoundary(reservationExists),
     asyncErrorBoundary(readReservation),
+  ],
+  updateReservation: [
+    asyncErrorBoundary(reservationExists),
+    statusPropertyIsBooked,
+    bodyDataHas("first_name"),
+    bodyDataHas("last_name"),
+    bodyDataHas("mobile_number"),
+    bodyDataHas("reservation_date"),
+    bodyDataHas("reservation_time"),
+    bodyDataHas("people"),
+    datePropertyIsValid,
+    timePropertyIsValid,
+    peoplePropertyIsValid,
+    reservationIsNotForTuesday,
+    reservationIsForFuture,
+    reservationIsForOpenHours,
+    asyncErrorBoundary(updateReservation),
+  ],
+  updateReservationStatus: [
+    asyncErrorBoundary(reservationExists),
+    bodyDataHas("status"),
+    statusPropertyIsValid,
+    statusPropertyIsNotFinished,
+    asyncErrorBoundary(updateReservationStatus),
   ],
   listReservations: [asyncErrorBoundary(listReservations)],
 };

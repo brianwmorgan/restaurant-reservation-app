@@ -18,6 +18,12 @@ router
 router
   .route("/:reservation_id")
   .get(controller.readReservation)
+  .put(controller.updateReservation)
+  .all(methodNotAllowed);
+
+router
+  .route("/:reservation_id/status")
+  .put(controller.updateReservationStatus)
   .all(methodNotAllowed);
 
 module.exports = router;

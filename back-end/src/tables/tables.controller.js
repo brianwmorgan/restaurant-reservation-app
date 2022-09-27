@@ -24,7 +24,7 @@ function tableNamePropertyIsValid(req, res, next) {
   } else {
     return next({
       status: 400,
-      message: `Invalid field: 'table_name' must be at least two characters long.`,
+      message: `'table_name' is invalid. Table Name must be at least two characters long.`,
     });
   }
 }
@@ -36,7 +36,7 @@ function capacityPropertyIsValid(req, res, next) {
   } else {
     return next({
       status: 400,
-      message: `Invalid field: 'capacity' must be at least 1.`,
+      message: `'capacity' is invalid. Capacity must be at least 1.`,
     });
   }
 }
@@ -85,8 +85,8 @@ function tableHasCapacity(req, res, next) {
 }
 
 function tableIsAvailable(req, res, next) {
-  const tableStatus = res.locals.table.status;
-  if (tableStatus === "Free") {
+  const tableIsSeated = res.locals.table.reservation_id;
+  if (!tableIsSeated) {
     return next();
   } else {
     return next({
@@ -97,13 +97,25 @@ function tableIsAvailable(req, res, next) {
 }
 
 function tableIsOccupied(req, res, next) {
-  const tableStatus = res.locals.table.status;
-  if (tableStatus === "Occupied") {
+  const tableIsSeated = res.locals.table.reservation_id;
+  if (tableIsSeated) {
     return next();
   } else {
     return next({
       status: 400,
       message: `This table is not occupied.`,
+    });
+  }
+}
+
+function reservationIsNotAlreadySeated(req, res, next) {
+  const status = res.locals.reservation.status;
+  if (status !== "seated") {
+    next();
+  } else {
+    next({
+      status: 400,
+      message: `This reservation is already seated.`,
     });
   }
 }
@@ -122,7 +134,7 @@ async function readTable(req, res) {
   res.status(200).json({ data: responseData });
 }
 
-async function seatTable(req, res, next) {
+async function seatTable(req, res) {
   const tableId = res.locals.table.table_id;
   const reservationId = res.locals.reservation.reservation_id;
   const responseData = await tablesService.seatTable(tableId, reservationId);
@@ -131,7 +143,8 @@ async function seatTable(req, res, next) {
 
 async function unseatTable(req, res) {
   const tableId = req.params.table_id;
-  const responseData = await tablesService.unseatTable(tableId);
+  const reservationId = res.locals.table.reservation_id;
+  const responseData = await tablesService.unseatTable(tableId, reservationId);
   res.status(200).json({ data: responseData });
 }
 
@@ -155,8 +168,9 @@ module.exports = {
     bodyDataHas("reservation_id"),
     asyncErrorBoundary(tableExists),
     asyncErrorBoundary(reservationExists),
-    tableHasCapacity,
+    reservationIsNotAlreadySeated,
     tableIsAvailable,
+    tableHasCapacity,
     asyncErrorBoundary(seatTable),
   ],
   unseatTable: [

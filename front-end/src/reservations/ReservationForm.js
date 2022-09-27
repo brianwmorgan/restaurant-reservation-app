@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import formatPhoneNumber from "../utils/formatPhoneNumber";
 import ErrorAlert from "../layout/ErrorAlert";
 
-export default function ReservationForm() {
+export default function ReservationForm({
+  existingReservation,
+  editMode = false,
+}) {
+  const URL = process.env.REACT_APP_API_BASE_URL + "/reservations";
   const history = useHistory();
 
   const intialFormState = {
@@ -15,7 +20,9 @@ export default function ReservationForm() {
     people: 0,
   };
 
-  const [formData, setFormData] = useState(intialFormState);
+  const [formData, setFormData] = useState(
+    existingReservation || intialFormState
+  );
   const [errors, setErrors] = useState(null);
 
   const handleChange = (event) => {
@@ -33,12 +40,25 @@ export default function ReservationForm() {
     }
   };
 
+  const handlePhoneNumberChange = (event) => {
+    const formattedPhoneNumber = formatPhoneNumber(event.target.value);
+    setFormData({
+      ...formData,
+      mobile_number: formattedPhoneNumber,
+    });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(process.env.REACT_APP_API_BASE_URL + `/reservations`, {
-        data: formData,
-      });
+      setErrors(null);
+      if (editMode) {
+        await axios.put(`${URL}/${existingReservation.reservation_id}`, {
+          data: formData,
+        });
+      } else {
+        await axios.post(URL, { data: formData });
+      }
       history.push(`/dashboard?date=${formData.reservation_date}`);
     } catch (error) {
       setErrors(error.response.data.error);
@@ -81,8 +101,9 @@ export default function ReservationForm() {
             id="mobile_number"
             placeholder="XXX-XXX-XXXX"
             required={true}
+            minLength="12"
             value={formData.mobile_number}
-            onChange={handleChange}
+            onChange={handlePhoneNumberChange}
           />
         </div>
         <div>
@@ -92,7 +113,7 @@ export default function ReservationForm() {
             type="date"
             id="reservation_date"
             placeholder="YYYY-MM-DD"
-            pattern="\d{4}-\d{2}-\d{2}"
+            //pattern="\d{4}-\d{2}-\d{2}"
             required={true}
             value={formData.reservation_date}
             onChange={handleChange}
@@ -124,7 +145,7 @@ export default function ReservationForm() {
           />
         </div>
         <button
-          type="btn btn-danger"
+          type="button"
           className="btn btn-danger"
           onClick={() => history.goBack()}
         >
