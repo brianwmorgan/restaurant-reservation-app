@@ -16,7 +16,7 @@ function readReservation(reservationId) {
     .first();
 }
 
-async function updateReservation(reservationId, updatedReservation) {
+function updateReservation(reservationId, updatedReservation) {
   return knex("reservations")
     .select("*")
     .where({ reservation_id: reservationId })

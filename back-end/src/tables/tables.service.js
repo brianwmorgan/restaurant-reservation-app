@@ -12,34 +12,42 @@ function readTable(tableId) {
 }
 
 async function seatTable(tableId, reservationId) {
-  const trx = await knex.transaction();
+  try {
+    const trx = await knex.transaction();
 
-  return trx("tables")
-    .where({ table_id: tableId })
-    .update({ status: "occupied", reservation_id: reservationId })
-    .then(function () {
-      return trx("reservations")
-        .where({ reservation_id: reservationId })
-        .update({ status: "seated" });
-    })
-    .then(trx.commit)
-    .catch(trx.rollback);
+    return trx("tables")
+      .where({ table_id: tableId })
+      .update({ status: "occupied", reservation_id: reservationId })
+      .then(function () {
+        return trx("reservations")
+          .where({ reservation_id: reservationId })
+          .update({ status: "seated" });
+      })
+      .then(trx.commit)
+      .catch(trx.rollback);
+  } catch (error) {
+    return error;
+  }
 }
 
 async function unseatTable(tableId, reservationId) {
-  const trx = await knex.transaction();
+  try {
+    const trx = await knex.transaction();
 
-  return knex("tables")
-    .select("*")
-    .where({ table_id: tableId })
-    .update({ status: "free", reservation_id: null })
-    .then(function () {
-      return trx("reservations")
-        .where({ reservation_id: reservationId })
-        .update({ status: "finished" });
-    })
-    .then(trx.commit)
-    .catch(trx.rollback);
+    return knex("tables")
+      .select("*")
+      .where({ table_id: tableId })
+      .update({ status: "free", reservation_id: null })
+      .then(function () {
+        return trx("reservations")
+          .where({ reservation_id: reservationId })
+          .update({ status: "finished" });
+      })
+      .then(trx.commit)
+      .catch(trx.rollback);
+  } catch (error) {
+    return error;
+  }
 }
 
 function listTables() {

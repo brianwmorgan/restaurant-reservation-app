@@ -4,15 +4,6 @@ import { unSeatTable } from "../utils/api";
 
 export default function TableCard({ table }) {
   const history = useHistory();
-  const handleFinishClick = async (event) => {
-    event.preventDefault();
-    const message = `Is this table ready to seat new guests? This cannot be undone.`;
-
-    if (window.confirm(message)) {
-      unSeatTable(table.table_id);
-      history.go(0);
-    }
-  };
 
   function statusText() {
     if (table.reservation_id) {
@@ -21,6 +12,19 @@ export default function TableCard({ table }) {
       return "free";
     }
   }
+
+  const handleFinishClick = async (event) => {
+    event.preventDefault();
+    const message = `Is this table ready to seat new guests? This cannot be undone.`;
+    try {
+      if (window.confirm(message)) {
+        await unSeatTable(table.table_id);
+        history.go(0);
+      }
+    } catch (error) {
+      return error;
+    }
+  };
 
   return (
     <tr>
