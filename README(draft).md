@@ -1,31 +1,28 @@
-# restaurant-reservation-app
-This CRUD application is a capstone project for the frontend development section of Thinkful's software engineering program. It allows users to create, read, update, and delete decks of flashcards so they can study any subject.
+![Periodic Tables](https://raw.githubusercontent.com/micah-patrick/restaurant-reservation/main/front-end/src/readme/readme-header.png "Periodic Tables")
 
-(link to live deployment here)
+#
+# Periodic Tables | Restaurant Reservation System
+
+
+Periodic Tables is a restaurant reservation system for fine dining restaurants. Users of the application are restaurant employees who wish to take reservations when a customer calls and to seat them when they come in to the restaurant.
+
+## Links
+(link to live server here)
+(link to live app here) - are both of these needed?
 
 ## Technology
-### Built with:
-- HTML, CSS, JavaScript, React, Bootstrap, Open Iconic
-[![postgresql](https://cdn.iconscout.com/icon/free/png-256/postgresql-11-1175122.png)](https://www.postgresql.org/) 
-[![react](https://cdn.iconscout.com/icon/free/png-256/react-1-282599.png)](https://reactjs.org/)
+
+### Frontend:
+- React, React Router, React Hooks, Javascript, HTML / JSX, Bootstrap, CSS, Open Iconic
+(icon links here)
+
+### Backend:
+- Node.js, Express, PostgreSQL, Knex
+
+[![react](https://cdn.iconscout.com/icon/free/png-96/react-1-282599.png)](https://reactjs.org/)
+[![nodejs](https://cdn.iconscout.com/icon/free/png-96/node-js-1174925.png)](https://nodejs.org/en/) 
 [![expressjs](https://hackr.io/tutorials/learn-express-js/logo/logo-express-js?ver=1557508379)](https://expressjs.com/)
-[![nodejs](https://cdn.iconscout.com/icon/free/png-256/node-js-1174925.png)](https://nodejs.org/en/)
-
-## Installation
-1. Fork and clone this repository.
-2. Run `npm install` to install project dependencies.
-3. Run `npm start` to start the application.
-
-## API
-
-| Route       | Get         | Put        | Post         | Delete       |      
-| ----------- | ----------- | ---------- | ------------ | ------------ |
-| ```/reservations```      | ✅      |❌      | ✅    |       ❌       |
-| ```/reservations/:reservation_id```   | ✅        | ✅       | ❌         | ❌         |
-| ```/reservations/:reservation_id/status```      | ❌      |✅      | ❌    |       ❌       |
-| ```/tables```   | ✅        | ❌       | ✅         | ❌         |
-| ```/tables/:table_id```   | ✅        | ❌       | ❌         | ❌         |
-| ```/tables/:table_id/seat```   | ❌        | ✅       | ❌         | ✅         |
+[![postgresql](https://cdn.iconscout.com/icon/free/png-96/postgresql-11-1175122.png)](https://www.postgresql.org/)
 
 ## How the App Works
 ### Home Screen
@@ -39,88 +36,86 @@ The Home screen has the following features:
 - Clicking the `Study` button brings the user to the Study screen at `decks/:deckId/study`.
 - Clicking the `Delete` button displays a prompt with a warning message that gives the user an option to delete the deck or cancel this action.
 
-### Delete Deck Prompt:
-(PLACEHOLDER FOR SCREENSHOT)  
-When the user clicks on the `Delete` button associated with a particular deck, a warning message is shown and the user can either click `OK` or `Cancel`. If the user clicks `OK`, the deck is deleted and will no longer be visible on the Home screen. If the user clicks `Cancel`, the action will be canceled.
+## API
 
-### Create Deck Screen:
-(PLACEHOLDER FOR SCREENSHOT)  
-The Create Deck screen allows the user to create new decks. It is displayed at `/decks/new`.  
-The Create Deck screen has the following features:
-- A breadcrumb navigation bar with a link to the Home screen, followed by the text: `Create Deck`.
-- A form is shown with the appropriate fields for creating a new deck.
-- If the user clicks the `Submit` button, the user is taken to this new deck's View Deck screen.
-- If the user clicks the `Cancel` button, the user is taken back to the Home screen.
+### Routes
 
-### View Deck Screen:
-(PLACEHOLDER FOR SCREENSHOT)  
-The View Deck screen allows the user to view all of the information about a deck. It is displayed at `/decks/:deckId`.  
-The View Deck screen has the following features:
-- A breadcrumb navigation bar with a link to the Home screen, followed by the name of the deck.
-- This screen includes the deck's name and description.
-- The screen includes `Edit`, `Study`, `Add Cards`, and `Delete` buttons. Each button takes the user to a different destination, as follows:
-  * `Edit` --> Edit Deck screen, `/decks/:deckId/edit`.
-  * `Study` --> Study screen, `/decks/:deckId`.
-  * `Add Cards` --> Add Card screen, `decks/:deckId/cards/new`.
-  * `Delete` --> Shows a warning message before deleting the deck.
-- Each card in the deck:
-  * Is listed on the page under the `Cards` heading.
-  * Shows a `Front` (question) and `Back` (answer) side to the card.
-  * Has an `Edit` button that takes the user to the Edit Card screen at `/decks/:deckId/cards/:cardId/edit`.
-  * Has a `Delete` button that allows that card to be deleted.
+The API allows for the following routes:
 
-### Delete Card Prompt
-(PLACEHOLDER FOR SCREENSHOT)  
-When the user clicks the `Delete` button associated with a card, a warning message is shown and the user can either click `OK` or `Cancel`. If the user clicks `OK`, the card is deleted and will no longer be visible on the View Deck screen. If the user clicks `Cancel`, the action will be canceled.
+Method | Route | Description
+ -|-|-
+| `GET` | `/reservations` | Lists all reservations for the current date.
+| `GET` | `/reservations?date=YYYY-MM-DD` | Lists all reservations on the query date.
+| `POST` | `/reservations` | Creates a new reservation. No `reservation_id` or `status` needs to be provided. All other fields are required.
+| `GET` | `/reservations/:reservation_id` | Reads a specific reservation by `reservation_id`.
+| `PUT` | `/reservations/:reservation_id` | Updates a specific reservation by `reservation_id`.
+| `PUT` | `/reservations/:reservation_id/status` | Updates the status of a specific reservation by `reservation_id`.
+| `GET` | `/tables` | Lists all tables.
+| `POST` | `/tables` | Creates a new table. Only `table_name` and `capacity` need be provided.
+| `PUT` | `/tables/:table_id/seat` | Assigns a table to a reservation and changes that reservation's `status` to _seated_.
+| `DELETE` | `/tables/:table_id/seat` | Removes a reservation from a table and changes that reservation's `status` to _finished_.
 
-### Edit Deck Screen:
-(PLACEHOLDER FOR SCREENSHOT)  
-The Edit Deck screen allows the user to modify the information of an existing deck. It is displayed at `/decks/:deckId/edit`.  
-The Edit Deck screen has the following features:
-- A breadcrumb navigation bar with a link to the Home screen, followed by a link to the deck being edited's View Deck screen, and finally, the text: `Edit Deck`.
-- It displays the same form as the Create Deck screen, except it is pre-filled with information for the existing deck.
-- The user can edit and update the form.
-- If the user clicks the `Cancel` button, the action is canceled and the user is taken back to the View Deck screen.
-- If the user clicks the `Submit` button, the new deck is created and the user is taken back to the View Deck screen.
+### HTTP Methods
+| Route       | Get         | Put        | Post         | Delete       |      
+| ----------- | ----------- | ---------- | ------------ | ------------ |
+| ```/reservations```      | ✅      |❌      | ✅    |       ❌       |
+| ```/reservations/:reservation_id```   | ✅        | ✅       | ❌         | ❌         |
+| ```/reservations/:reservation_id/status```      | ❌      |✅      | ❌    |       ❌       |
+| ```/tables```   | ✅        | ❌       | ✅         | ❌         |
+| ```/tables/:table_id```   | ✅        | ❌       | ❌         | ❌         |
+| ```/tables/:table_id/seat```   | ❌        | ✅       | ❌         | ✅         |
 
-### Study Screen:
-(PLACEHOLDER FOR SCREENSHOT)  
-The Study screen allows the user to study the cards in a deck. It is displayed at `/decks/:deckId/study`.  
-The Study screen has the following features:
-- A breadcrumb navigation bar with a link to the Home screen, followed by a link to that deck's View Deck screen, and finally the text: `Study`. 
-- The deck's title is shown on the screen.
-- Cards are shown one at a time, front-side first.
-- A `Flip` button at the bottom of each card "flips" it to the other side.
-- After flipping the card, the screen shows a `Next` button that allows the user to continue to the next card.
+### Reservations
 
-### Next Button:
-(PLACEHOLDER FOR SCREENSHOT)  
-After clicking the `Flip` button on the Study screen, the back of the card will be displayed and include a `Next` button. Clicking the `Next` button will display the front of the next card in the deck. Clicking the `Flip` button again will re-display the front of the card.
+The `reservations` table represents all the reservations to the restaurant. Each reservation has the following fields:
 
-### Restart Prompt:
-(PLACEHOLDER FOR SCREENSHOT)  
-After the final card in the deck has been shown, a prompt is displayed offering the user an opportunity to restart the deck. If the user does not restart the deck, they are returned to the Home screen.
+- `reservation_id`: (Primary Key)
+- `first_name`: (String) The first name of the customer.
+- `last_name`: (String) The last name of the customer.
+- `mobile_number`: (String) The customer's mobile phone number.
+- `reservation_date`: (Date) The date of the reservation.
+- `reservation_time`: (Time) The time of the reservation.
+- `people`: (Integer) The size of the party.
+- `Status`: (String) The reservation status can be _booked, seated, finished, or cancelled_ and defaults to _booked_.
 
-### Not Enough Cards:
-(PLACEHOLDER FOR SCREENSHOT)  
-If a user tries to study a deck with two or fewer cards, the Study screen will display a `Not enough cards` message and an `Add Cards` button. Clicking the `Add Cards` button will take the user to the Add Card screen at `decks/:deckId/cards/new`.  
+An example record looks like the following:
 
-### Add Card Screen:
-(PLACEHOLDER FOR SCREENSHOT)  
-The Add Card screen allows the user to add a new card to an existing deck. It is displayed at `/decks/:deckId/cards/new`.  
-The  screen has the following features:
-- A breadcrumb navigation bar with a link to the Home screen, followed by a link to that card's View Deck screen, and finally the text `Add Card`.
-- The screen displays the deck title followed by the text `Add Card`.
-- The screen displays a form with the `Front` and `Back` fields for a new card.
-- If the user clicks the `Done` button, the user is taken to that deck's View Deck screen.
-- If the user clicks the `Save` button, a new card is created and added to the end of that deck. Then the form is cleared and the process for adding a new card is restarted.
+```json
+  {
+    "first_name": "Rick",
+    "last_name": "Sanchez",
+    "mobile_number": "202-555-0164",
+    "reservation_date": "2020-12-31",
+    "reservation_time": "20:00:00",
+    "people": 6,
+    "status": "booked"
+  }
+```
+### Tables
 
-### Edit Card Screen:
-(PLACEHOLDER FOR SCREENSHOT)  
-The Edit Card screen allows the user to modify the information of an existing card. It is displayed at `/decks/:deckId/cards/:cardId/edit`.  
-The Edit Card screen has the following features:
-- A breadcrumb navigation bar with a link to the Home screen, followed by a link to that card's View Deck screen, and finally the text: `Edit Card :cardId`. 
-- It displays the same form as the Add Card screen, except it is pre-filled with information for the existing card
-- The existing information can be edited and updated.
-- If the user clicks the `Cancel` button, the edit is canceled and the user is taken back to that deck's View Deck screen.
-- If the user clicks the `Submit` button, the card updates are saved and the user is taken back to that deck's View Deck screen.
+The `tables` table represents all the tables in the restaurant. Each table has the following fields:
+
+- `table_id`: (Primary Key)
+- `table_name`: (String) The name of the table.
+- `capacity`: (Integer) The maximum number of people that the table can seat.
+- `reservation_id`: (Foreign Key) The reservation - if any - that is currently seated at the table.
+
+An example record looks like the following:
+
+```json
+  {
+    "table_name": "Bar #1",
+    "capacity": 1,
+    "reservation_id": 8,
+  }
+```
+
+## Installation
+
+1. Fork and clone this repository.
+1. Run `cp ./back-end/.env.sample ./back-end/.env`.
+1. Update the `./back-end/.env` file with the connection URL's to your ElephantSQL database instance.
+1. Run `cp ./front-end/.env.sample ./front-end/.env`.
+1. You should not need to make changes to the `./front-end/.env` file unless you want to connect to a backend at a location other than `http://localhost:5001`.
+1. Run `npm install` to install project dependencies.
+1. Run `npm run start:dev` to start your server in development mode.
