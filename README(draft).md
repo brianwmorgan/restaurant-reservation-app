@@ -1,10 +1,8 @@
 ![Periodic Tables](https://raw.githubusercontent.com/micah-patrick/restaurant-reservation/main/front-end/src/readme/readme-header.png "Periodic Tables")
 
-#
-# Periodic Tables | Restaurant Reservation System
+# Periodic Tables | Restaurant Reservation and Seating System
 
-
-Periodic Tables is a restaurant reservation system for fine dining restaurants. Users of the application are restaurant employees who wish to take reservations when a customer calls and to seat them when they come in to the restaurant.
+Periodic Tables is a dynamic reservation and seating system for restaurant managers and employees. A user can view reservations by date, add new reservations, edit/cancel/search for existing reservations, add new tables, and seat/unseat reservations at tables.
 
 ## Links
 (link to live server here)
@@ -25,22 +23,28 @@ Periodic Tables is a restaurant reservation system for fine dining restaurants. 
 
 ## How the App Works
 ### Dashboard
-![edit card screen](/screenshots/new/edit-card-screen.jpg)  
-(PLACEHOLDER FOR SCREENSHOT)  
-The Home screen is the first page the user sees. It is displayed at `/`.  
-The Home screen has the following features:
-- A `Create Deck` button brings the user to the Create Deck screen at `/decks/new`.
-- Existing decks are each shown with the deck name, the number of cards, and a `View`, `Study`, and `Delete` button.
+The **Dashboard** page serves as the homepage for the app. The navigation bar (which appears on all pages for this app) includes links to the **Dashboard**, **Search**, **New Reservation**, and **New Table** pages. This page displays a list of reservations for a given day as well as a list of tables in the restauarant. From the reservations list, a user can navigate to the **Seat Reservation** and **Edit Reservation** pages as well as cancel a specific reservation. The reservation's status updates automatically. From the tables list, a user can unseat a table and finish the reservation assigned to it. The table's status updates automatically. A user can toggle between different dates by clicking the **Previous Date** and **Next Date** buttons.  
+![edit card screen](/screenshots/new/edit-card-screen.jpg) 
 
 ### Search
+The **Search** page allows a user to look-up reservations in the system by phone number. Partial phone numbers are acceptable inputs. If there are any reservations that match the input, they are displayed in a list that includes options to seat, edit, or cancel a reservation if its current status is _booked_. If there are no matching reservations, the user will get a "No reservations found" message.  
+![edit card screen](/screenshots/new/edit-card-screen.jpg) 
 
 ### New Reservation
+The **New Reservation** page allows a user to create a new reservation. All fields are required and have constraints. The _mobile number_ must be 10 digits. The _Date of Reservation_ must be for today or a future date and cannot be on Tuesdays (when the restaurant is closed). The _Time of Reservation_ must be between 10:30am and 9:30pm. The _Number of People_ must be at least 1. If any inputs are invalid, the user will get an informative error message.  
+![edit card screen](/screenshots/new/edit-card-screen.jpg) 
 
 ### Edit Reservation
+The **Edit Reservation** page allows a user to edit an existing reservation. When a user navigates to this page, the fields will be populated with the existing reservation's current information, which the user can edit. All constraints from the **New Reservation** page are present on this page. If any inputs are invalid, the user will get an informative error message.  
+![edit card screen](/screenshots/new/edit-card-screen.jpg) 
 
 ### New Table
+The **New Table** page allows a user to create a new table in the restaurant. Both fields are required. The _Table Name_ must be at least two characters. The _Capacity_ must be at least 1. If any inputs are invalid the user will get an informative error message.  
+![edit card screen](/screenshots/new/edit-card-screen.jpg) 
 
 ### Seat Table
+The **Seat Table** page allows a user to seat a specific reservation at a table in the restaurant. A drop-down list provides table options. If a table is currently occupied or does not have sufficient capacity for that specific reservation, the user will get an informative error message.  
+![edit card screen](/screenshots/new/edit-card-screen.jpg) 
 
 ## API
 
