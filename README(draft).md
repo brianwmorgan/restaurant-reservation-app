@@ -17,24 +17,30 @@ Periodic Tables is a restaurant reservation system for fine dining restaurants. 
 (icon links here)
 
 ### Backend:
-- Node.js, Express, PostgreSQL, Knex
-
-[![react](https://cdn.iconscout.com/icon/free/png-96/react-1-282599.png)](https://reactjs.org/)
-[![nodejs](https://cdn.iconscout.com/icon/free/png-96/node-js-1174925.png)](https://nodejs.org/en/) 
+- Node.js, Express, PostgreSQL, Knex  
+[![react](https://cdn.iconscout.com/icon/free/png-192/react-1-282599.png)](https://reactjs.org/)
+[![nodejs](https://cdn.iconscout.com/icon/free/png-192/node-js-1174925.png)](https://nodejs.org/en/) 
 [![expressjs](https://hackr.io/tutorials/learn-express-js/logo/logo-express-js?ver=1557508379)](https://expressjs.com/)
-[![postgresql](https://cdn.iconscout.com/icon/free/png-96/postgresql-11-1175122.png)](https://www.postgresql.org/)
+[![postgresql](https://cdn.iconscout.com/icon/free/png-192/postgresql-11-1175122.png)](https://www.postgresql.org/)
 
 ## How the App Works
-### Home Screen
+### Dashboard
 ![edit card screen](/screenshots/new/edit-card-screen.jpg)  
 (PLACEHOLDER FOR SCREENSHOT)  
 The Home screen is the first page the user sees. It is displayed at `/`.  
 The Home screen has the following features:
 - A `Create Deck` button brings the user to the Create Deck screen at `/decks/new`.
 - Existing decks are each shown with the deck name, the number of cards, and a `View`, `Study`, and `Delete` button.
-- Clicking the `View` button brings the user to the View Deck screen at `/decks/:deckId`.
-- Clicking the `Study` button brings the user to the Study screen at `decks/:deckId/study`.
-- Clicking the `Delete` button displays a prompt with a warning message that gives the user an option to delete the deck or cancel this action.
+
+### Search
+
+### New Reservation
+
+### Edit Reservation
+
+### New Table
+
+### Seat Table
 
 ## API
 
