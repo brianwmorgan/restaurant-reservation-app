@@ -23,7 +23,7 @@ Periodic Tables is a dynamic reservation and seating system for restaurant manag
 
 ## How the App Works
 ### Dashboard
-The **Dashboard** page serves as the homepage for the app. The navigation bar (which appears on all pages for this app) includes links to the **Dashboard**, **Search**, **New Reservation**, and **New Table** pages. This page displays a list of reservations for a given day as well as a list of tables in the restauarant. From the reservations list, a user can navigate to the **Seat Reservation** and **Edit Reservation** pages as well as cancel a specific reservation. The reservation's status updates automatically. From the tables list, a user can unseat a table and finish the reservation assigned to it. The table's status updates automatically. A user can toggle between different dates by clicking the **Previous Date** and **Next Date** buttons.  
+The **Dashboard** page serves as the homepage for the app. The navigation bar (which appears on all pages for this app) includes links to the **Dashboard**, **Search**, **New Reservation**, and **New Table** pages. This page displays a list of reservations for a given day as well as a list of tables in the restauarant. From the reservations list, a user can navigate to the **Seat Reservation** and **Edit Reservation** pages as well as cancel a specific reservation. The reservation's status updates automatically. From the tables list, a user can unseat a table and finish the reservation assigned to it. The table's status updates automatically. A user can toggle between different dates by clicking the **Previous Date**, **Today**, and **Next Date** buttons or select a specific calendar date with the datepicker.  
 ![edit card screen](/screenshots/new/edit-card-screen.jpg) 
 
 ### Search
@@ -31,7 +31,7 @@ The **Search** page allows a user to look-up reservations in the system by phone
 ![edit card screen](/screenshots/new/edit-card-screen.jpg) 
 
 ### New Reservation
-The **New Reservation** page allows a user to create a new reservation. All fields are required and have constraints. The _mobile number_ must be 10 digits. The _Date of Reservation_ must be for today or a future date and cannot be on Tuesdays (when the restaurant is closed). The _Time of Reservation_ must be between 10:30am and 9:30pm. The _Number of People_ must be at least 1. If any inputs are invalid, the user will get an informative error message.  
+The **New Reservation** page allows a user to create a new reservation. All fields are required and have constraints. The _Mobile Number_ must be 10 digits. The _Date of Reservation_ must be for today or a future date and cannot be on Tuesdays (when the restaurant is closed). The _Time of Reservation_ must be between 10:30am and 9:30pm. The _Number of People_ must be at least 1. If any inputs are invalid, the user will get an informative error message.  
 ![edit card screen](/screenshots/new/edit-card-screen.jpg) 
 
 ### Edit Reservation
