@@ -69,75 +69,122 @@ export default function ReservationForm({
     <div>
       <ErrorAlert error={errors} />
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="first_name">First Name:</label>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text">
+              <span className="oi oi-person mr-2"></span>
+              Name
+            </span>
+          </div>
+          <label className="sr-only" htmlFor="first_name">
+            First Name:
+          </label>
           <input
             name="first_name"
             type="text"
             id="first_name"
             placeholder="First Name"
+            className="form-control"
             required={true}
             value={formData.first_name}
             onChange={handleChange}
           />
-        </div>
-        <div>
-          <label htmlFor="last_name">Last Name:</label>
+          <label class name="sr-only" htmlFor="last_name">
+          </label>
           <input
             name="last_name"
             type="text"
             id="last_name"
             placeholder="Last Name"
+            className="form-control"
             required={true}
             value={formData.last_name}
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label htmlFor="mobile_number">Mobile Number:</label>
+
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">
+              <span className="oi oi-phone mr-2"></span>
+              Mobile Number
+            </span>
+          </div>
+          <label className="sr-only" htmlFor="mobile_number">
+            Mobile Number:
+          </label>
           <input
             name="mobile_number"
             type="tel"
             id="mobile_number"
             placeholder="XXX-XXX-XXXX"
+            className="form-control"
             required={true}
             minLength="12"
             value={formData.mobile_number}
             onChange={handlePhoneNumberChange}
           />
         </div>
-        <div>
-          <label htmlFor="reservation_date">Date of Reservation:</label>
+
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">
+              <span className="oi oi-calendar mr-2"></span>
+              Date
+            </span>
+          </div>
+          <label className="sr-only" htmlFor="reservation_date">
+            Date of Reservation:
+          </label>
           <input
             name="reservation_date"
             type="date"
             id="reservation_date"
             placeholder="YYYY-MM-DD"
-            //pattern="\d{4}-\d{2}-\d{2}"
+            className="form-control"
             required={true}
             value={formData.reservation_date}
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label htmlFor="reservation_time">Time of Reservation:</label>
+
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">
+              <span className="oi oi-clock mr-2"></span>
+              Time
+            </span>
+          </div>
+          <label className="sr-only" htmlFor="reservation_time">
+            Time of Reservation:
+          </label>
           <input
             name="reservation_time"
             type="time"
             id="reservation_time"
             placeholder="HH:MM"
+            className="form-control"
             pattern="[0-9]{2}:[0-9]{2}"
             required={true}
             value={formData.reservation_time}
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label htmlFor="people">Number of People:</label>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">
+              <span className="oi oi-people mr-2"></span>
+              People
+            </span>
+          </div>
+          <label className="sr-only" htmlFor="people">
+            Number of People:
+          </label>
           <input
             name="people"
             type="number"
             id="people"
+            className="form-control"
             min="1"
             required={true}
             value={formData.people}
@@ -146,12 +193,14 @@ export default function ReservationForm({
         </div>
         <button
           type="button"
-          className="btn btn-sm btn-danger"
+          className="btn btn-secondary mr-1 mb-3"
           onClick={() => history.goBack()}
         >
+          <span className="oi oi-circle-x mr-2" />
           Cancel
         </button>
-        <button type="submit" className="btn btn-sm btn-primary">
+        <button type="submit" className="btn btn-primary mx-1 mb-3">
+          <span className="oi oi-circle-check mr-2" />
           Submit
         </button>
       </form>

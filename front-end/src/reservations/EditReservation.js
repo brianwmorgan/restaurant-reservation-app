@@ -29,7 +29,7 @@ export default function EditReservation() {
 
   return (
     <div>
-      <h1>Edit Reservation</h1>
+      <h1 className="my-4">Edit Reservation</h1>
       <ErrorAlert error={errors} />
       {existingReservation && (
         <ReservationForm
