@@ -66,6 +66,7 @@ export default function SearchForm() {
             id="mobile_number"
             placeholder="Enter a customer's phone number"
             className="form-control"
+            aria-label="mobile_number"
             style={{ maxWidth: 300 }}
             required={true}
             value={mobileNumber}

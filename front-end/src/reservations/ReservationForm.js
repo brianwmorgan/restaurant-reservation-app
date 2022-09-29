@@ -85,6 +85,7 @@ export default function ReservationForm({
             id="first_name"
             placeholder="First Name"
             className="form-control"
+            aria-label="first_name"
             required={true}
             value={formData.first_name}
             onChange={handleChange}
@@ -97,6 +98,7 @@ export default function ReservationForm({
             id="last_name"
             placeholder="Last Name"
             className="form-control"
+            aria-label="last_name"
             required={true}
             value={formData.last_name}
             onChange={handleChange}
@@ -119,6 +121,7 @@ export default function ReservationForm({
             id="mobile_number"
             placeholder="XXX-XXX-XXXX"
             className="form-control"
+            aria-label="mobile_number"
             required={true}
             minLength="12"
             value={formData.mobile_number}
@@ -142,6 +145,7 @@ export default function ReservationForm({
             id="reservation_date"
             placeholder="YYYY-MM-DD"
             className="form-control"
+            aria-label="reservation_date"
             required={true}
             value={formData.reservation_date}
             onChange={handleChange}
@@ -164,6 +168,7 @@ export default function ReservationForm({
             id="reservation_time"
             placeholder="HH:MM"
             className="form-control"
+            aria-label="reservation_time"
             pattern="[0-9]{2}:[0-9]{2}"
             required={true}
             value={formData.reservation_time}
@@ -185,6 +190,7 @@ export default function ReservationForm({
             type="number"
             id="people"
             className="form-control"
+            aria-label="people"
             min="1"
             required={true}
             value={formData.people}

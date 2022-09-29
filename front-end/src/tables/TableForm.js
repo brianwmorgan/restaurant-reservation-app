@@ -60,6 +60,7 @@ export default function TableForm() {
             id="table_name"
             placeholder="Table Name"
             className="form-control"
+            aria-label="table_name"
             style={{ maxWidth: 300 }}
             required={true}
             value={formData.table_name}
@@ -82,6 +83,7 @@ export default function TableForm() {
             id="capacity"
             min="1"
             className="form-control"
+            aria-label="capacity"
             style={{ maxWidth: 100 }}
             required={true}
             value={formData.capacity}
