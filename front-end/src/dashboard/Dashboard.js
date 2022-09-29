@@ -79,14 +79,14 @@ function Dashboard({ date }) {
         </div>
         <ErrorAlert error={reservationsError} />
         <div>
-          <h4>Reservations for {displayDate.display}</h4>
+          <h4 className="mt-4">Reservations for {displayDate.display}</h4>
         </div>
         <div>
           <ReservationsList reservations={reservations} />
         </div>
         <ErrorAlert error={tablesError} />
         <div>
-          <h4>Tables</h4>
+          <h4 className="mt-4">Tables</h4>
         </div>
         <div>
           <TablesList tables={tables} />

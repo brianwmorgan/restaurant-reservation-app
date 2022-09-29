@@ -13,7 +13,7 @@ export default function ReservationsList({ reservations, searchMode }) {
     });
     return (
       <div>
-        <table className="table table-success table-striped table-hover table-bordered table-responsive">
+        <table className="table table-success table-striped table-hover table-bordered table-responsive-sm">
           <thead className="table table-success-dark">
             <tr>
               <th scope="col" className="text-center">First Name</th>
