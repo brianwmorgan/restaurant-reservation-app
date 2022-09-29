@@ -1,5 +1,3 @@
-![Periodic Tables](https://raw.githubusercontent.com/micah-patrick/restaurant-reservation/main/front-end/src/readme/readme-header.png "Periodic Tables")
-
 # Periodic Tables | Restaurant Reservation and Seating System
 
 Periodic Tables is a dynamic reservation and seating system for restaurant managers and employees. A user can view reservations by date, add new reservations, edit/cancel/search for existing reservations, add new tables, and seat/unseat reservations at tables.
