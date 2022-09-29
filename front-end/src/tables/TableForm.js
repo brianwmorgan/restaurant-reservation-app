@@ -45,25 +45,44 @@ export default function TableForm() {
     <div>
       <ErrorAlert error={errors} />
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="table_name">Table Name:</label>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">
+              <span className="oi oi-layers mr-2"></span>
+            </span>
+          </div>
+          <label className="sr-only" htmlFor="table_name">
+            Table Name:
+          </label>
           <input
             name="table_name"
             type="text"
             id="table_name"
             placeholder="Table Name"
+            className="form-control"
+            style={{ maxWidth: 300 }}
             required={true}
             value={formData.table_name}
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label htmlFor="capacity">Capacity:</label>
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">
+              <span className="oi oi-people mr-2"></span>
+              Capacity
+            </span>
+          </div>
+          <label className="sr-only" htmlFor="capacity">
+            Capacity:
+          </label>
           <input
             name="capacity"
             type="number"
             id="capacity"
             min="1"
+            className="form-control"
+            style={{ maxWidth: 100 }}
             required={true}
             value={formData.capacity}
             onChange={handleChange}
@@ -71,12 +90,14 @@ export default function TableForm() {
         </div>
         <button
           type="button"
-          className="btn btn-sm btn-danger"
+          className="btn btn-secondary mr-1 mb-3"
           onClick={() => history.goBack()}
         >
+          <span className="oi oi-circle-x mr-2" />
           Cancel
         </button>
-        <button type="submit" className="btn btn-sm btn-primary">
+        <button type="submit" className="btn btn-primary mx-1 mb-3">
+          <span className="oi oi-circle-check mr-2" />
           Submit
         </button>
       </form>
