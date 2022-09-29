@@ -31,14 +31,18 @@ export default function TableForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const abortController = new AbortController();
     try {
+      setErrors(null);
       await axios.post(process.env.REACT_APP_API_BASE_URL + `/tables`, {
         data: formData,
+        signal: AbortController.signal,
       });
       history.push(`/dashboard`);
     } catch (error) {
       setErrors(error.response.data.error);
     }
+    abortController.abort();
   };
 
   return (

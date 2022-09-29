@@ -50,25 +50,31 @@ export default function ReservationForm({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setErrors(null);
+    const abortController = new AbortController();
     try {
-      setErrors(null);
       if (editMode) {
         await axios.put(`${URL}/${existingReservation.reservation_id}`, {
           data: formData,
+          signal: AbortController.signal,
         });
       } else {
-        await axios.post(URL, { data: formData });
+        await axios.post(URL, {
+          data: formData,
+          signal: AbortController.signal,
+        });
       }
       history.push(`/dashboard?date=${formData.reservation_date}`);
     } catch (error) {
       setErrors(error.response.data.error);
     }
+    abortController.abort();
   };
 
   return (
     <div>
       <div className="mb-4">
-      <ErrorAlert error={errors} />
+        <ErrorAlert error={errors} />
       </div>
       <form onSubmit={handleSubmit}>
         <div className="input-group mb-3">
@@ -92,8 +98,7 @@ export default function ReservationForm({
             value={formData.first_name}
             onChange={handleChange}
           />
-          <label className="sr-only" htmlFor="last_name">
-          </label>
+          <label className="sr-only" htmlFor="last_name"></label>
           <input
             name="last_name"
             type="text"
