@@ -35,9 +35,10 @@ export default function TableCard({ table }) {
         {table.reservation_id && (
           <button
             data-table-id-finish={table.table_id}
-            className="btn btn-primary"
+            className="btn btn-sm btn-danger"
             onClick={handleFinishClick}
           >
+            <span className="oi oi-check mr-2" />
             Finish
           </button>
         )}

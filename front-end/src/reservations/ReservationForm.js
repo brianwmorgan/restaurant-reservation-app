@@ -146,12 +146,12 @@ export default function ReservationForm({
         </div>
         <button
           type="button"
-          className="btn btn-danger"
+          className="btn btn-sm btn-danger"
           onClick={() => history.goBack()}
         >
           Cancel
         </button>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-sm btn-primary">
           Submit
         </button>
       </form>

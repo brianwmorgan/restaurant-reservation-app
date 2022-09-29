@@ -70,13 +70,13 @@ export default function TableForm() {
           />
         </div>
         <button
-          type="btn btn-danger"
-          className="btn btn-danger"
+          type="button"
+          className="btn btn-sm btn-danger"
           onClick={() => history.goBack()}
         >
           Cancel
         </button>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-sm btn-primary">
           Submit
         </button>
       </form>
