@@ -13,18 +13,18 @@ export default function ReservationsList({ reservations, searchMode }) {
     });
     return (
       <div>
-        <table>
-          <thead>
+        <table className="table table-success table-striped table-hover table-bordered table-responsive">
+          <thead className="table table-success-dark">
             <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Mobile Number</th>
-              <th>Time</th>
-              <th># of People</th>
-              <th>Status</th>
-              <th>Seat</th>
-              <th>Edit</th>
-              <th>Cancel</th>
+              <th scope="col" className="text-center">First Name</th>
+              <th scope="col" className="text-center">Last Name</th>
+              <th scope="col" className="text-center">Mobile Number</th>
+              <th scope="col" className="text-center">Time</th>
+              <th scope="col" className="text-center"># of People</th>
+              <th scope="col" className="text-center">Status</th>
+              <th scope="col" className="text-center">Seat</th>
+              <th scope="col" className="text-center">Edit</th>
+              <th scope="col" className="text-center">Cancel</th>
             </tr>
           </thead>
           <tbody>{reservationsList}</tbody>
@@ -50,18 +50,18 @@ export default function ReservationsList({ reservations, searchMode }) {
 
     return (
       <div>
-        <table>
-          <thead>
+        <table className="table table-success table-striped table-hover table-bordered table-responsive-sm">
+          <thead className="table table-success-dark">
             <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Mobile Number</th>
-              <th>Time</th>
-              <th># of People</th>
-              <th>Status</th>
-              <th>Seat</th>
-              <th>Edit</th>
-              <th>Cancel</th>
+              <th scope="col" className="text-center">First Name</th>
+              <th scope="col" className="text-center">Last Name</th>
+              <th scope="col" className="text-center">Mobile Number</th>
+              <th scope="col" className="text-center">Time</th>
+              <th scope="col" className="text-center"># of People</th>
+              <th scope="col" className="text-center">Status</th>
+              <th scope="col" className="text-center">Seat</th>
+              <th scope="col" className="text-center">Edit</th>
+              <th scope="col" className="text-center">Cancel</th>
             </tr>
           </thead>
           <tbody>{reservationsList}</tbody>

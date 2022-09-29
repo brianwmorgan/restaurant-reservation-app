@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useQuery from "../utils/useQuery";
 import { listReservations, listTables } from "../utils/api";
-import { today, previous, next } from "../utils/date-time";
+import { today, previous, next, getDisplayDate } from "../utils/date-time";
 import ReservationsList from "../reservations/ReservationsList";
 import TablesList from "../tables/TablesList";
 import ErrorAlert from "../layout/ErrorAlert";
@@ -22,6 +22,7 @@ function Dashboard({ date }) {
   const [reservationsError, setReservationsError] = useState(null);
   const [tables, setTables] = useState([]);
   const [tablesError, setTablesError] = useState(null);
+  const displayDate = getDisplayDate(date);
 
   useEffect(loadDashboard, [date]);
 
@@ -39,14 +40,11 @@ function Dashboard({ date }) {
     <main>
       <div>
         <h1>Dashboard</h1>
-        <ErrorAlert error={reservationsError} />
-        <div>
-          <h4>Reservations for {date}</h4>
-        </div>
+
         <div>
           <button
             type="button"
-            className="btn btn-info btn-sm mr-2"
+            className="btn btn-info btn-sm mt-2 mb-2 mr-2"
             onClick={() => history.push(`/dashboard?date=${previous(date)}`)}
           >
             <span className="oi oi-chevron-left mr-2" />
@@ -54,7 +52,7 @@ function Dashboard({ date }) {
           </button>
           <button
             type="button"
-            className="btn btn-info btn-sm mr-2"
+            className="btn btn-info btn-sm  mt-2 mb-2 mr-2"
             onClick={() => history.push(`/dashboard?date=${today()}`)}
           >
             <span className="oi oi-calendar mr-2" />
@@ -62,7 +60,7 @@ function Dashboard({ date }) {
           </button>
           <button
             type="button"
-            className="btn btn-info btn-sm mr-2"
+            className="btn btn-info btn-sm mt-2 mb-2 mr-2"
             onClick={() => history.push(`/dashboard?date=${next(date)}`)}
           >
             Next Date
@@ -70,13 +68,17 @@ function Dashboard({ date }) {
           </button>
           <input
             type="date"
-            className="form-control mt-2"
+            className="form-control mt-2 mb-2"
             style={{ maxWidth: "150px" }}
             onChange={(event) =>
               history.push(`/dashboard?date=${event.target.value}`)
             }
             value={date}
           />
+        </div>
+        <ErrorAlert error={reservationsError} />
+        <div>
+          <h4>Reservations for {displayDate.display}</h4>
         </div>
         <div>
           <ReservationsList reservations={reservations} />

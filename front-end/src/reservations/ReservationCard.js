@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { getDisplayDate, getDisplayTime } from "../utils/date-time";
+import { getDisplayTime } from "../utils/date-time";
 
 export default function ReservationCard({ reservation }) {
   const URL = process.env.REACT_APP_API_BASE_URL;
@@ -25,20 +25,19 @@ export default function ReservationCard({ reservation }) {
     }
   };
 
-  const displayDate = getDisplayDate(reservation.reservation_date);
   const displayTime = getDisplayTime(reservation.reservation_time);
 
   return (
     <tr>
-      <td>{reservation.first_name}</td>
-      <td>{reservation.last_name}</td>
-      <td>{reservation.mobile_number}</td>
-      <td>{displayTime}</td>
-      <td>{reservation.people}</td>
-      <td data-reservation-id-status={reservation.reservation_id}>
+      <td className="text-left">{reservation.first_name}</td>
+      <td className="text-left">{reservation.last_name}</td>
+      <td className="text-center">{reservation.mobile_number}</td>
+      <td className="text-center">{displayTime}</td>
+      <td className="text-center">{reservation.people}</td>
+      <td className="text-center" data-reservation-id-status={reservation.reservation_id}>
         {reservation.status}
       </td>
-      <td>
+      <td className="text-center">
         {reservation.status === "booked" && (
           <Link to={`/reservations/${reservation.reservation_id}/seat`}>
             <button className="btn btn-sm btn-primary">
@@ -48,7 +47,7 @@ export default function ReservationCard({ reservation }) {
           </Link>
         )}
       </td>
-      <td>
+      <td className="text-center">
         {reservation.status === "booked" && (
           <Link to={`/reservations/${reservation.reservation_id}/edit`}>
             <button className="btn btn-sm btn-secondary">
@@ -58,7 +57,7 @@ export default function ReservationCard({ reservation }) {
           </Link>
         )}
       </td>
-      <td>
+      <td className="text-center">
         {reservation.status === "booked" && (
           <button
             className="btn btn-sm btn-danger"

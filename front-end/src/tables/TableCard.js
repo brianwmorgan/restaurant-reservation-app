@@ -28,14 +28,23 @@ export default function TableCard({ table }) {
 
   return (
     <tr>
-      <td>{table.table_name}</td>
-      <td>{table.capacity}</td>
-      <td data-table-id-status={table.table_id}>{statusText()}</td>
-      <td>
+      <td className="text-left">
+        {table.table_name}
+      </td>
+      <td className="text-center">
+        {table.capacity}
+      </td>
+      <td
+        className="text-center"
+        data-table-id-status={table.table_id}
+      >
+        {statusText()}
+      </td>
+      <td className="text-center">
         {table.reservation_id && (
           <button
+            className="btn btn-sm btn-danger tex-center"
             data-table-id-finish={table.table_id}
-            className="btn btn-sm btn-danger"
             onClick={handleFinishClick}
           >
             <span className="oi oi-check mr-2" />
