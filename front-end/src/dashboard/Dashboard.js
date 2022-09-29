@@ -31,7 +31,13 @@ function Dashboard({ date }) {
     setReservationsError(null);
     listReservations({ date }, abortController.signal)
       .then(setReservations)
-      .catch(setReservationsError);
+      .catch(
+        setReservationsError(
+          <div className="alert alert-danger border border-danger my-2">
+            No Reservations on {displayDate.display}
+          </div>
+        )
+      );
     listTables(abortController.signal).then(setTables).catch(setTablesError);
     return () => abortController.abort();
   }
@@ -77,12 +83,15 @@ function Dashboard({ date }) {
             value={date}
           />
         </div>
-        <ErrorAlert error={reservationsError} />
         <div>
           <h4 className="mt-4">Reservations for {displayDate.display}</h4>
         </div>
+        <div className="my-4">{!reservations.length && reservationsError}</div>
+
         <div>
-          <ReservationsList reservations={reservations} />
+          {reservations.length > 0 && (
+            <ReservationsList reservations={reservations} />
+          )}
         </div>
         <ErrorAlert error={tablesError} />
         <div>
