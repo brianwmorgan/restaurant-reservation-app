@@ -24,7 +24,7 @@ function Dashboard({ date }) {
   const [tablesError, setTablesError] = useState(null);
   const displayDate = getDisplayDate(date);
 
-  useEffect(loadDashboard, [date]);
+  useEffect(loadDashboard, [date, displayDate.display]);
 
   function loadDashboard() {
     const abortController = new AbortController();

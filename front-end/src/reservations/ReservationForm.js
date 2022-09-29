@@ -67,7 +67,9 @@ export default function ReservationForm({
 
   return (
     <div>
+      <div className="mb-4">
       <ErrorAlert error={errors} />
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="input-group mb-3">
           <div className="input-group-prepend">
@@ -90,7 +92,7 @@ export default function ReservationForm({
             value={formData.first_name}
             onChange={handleChange}
           />
-          <label class name="sr-only" htmlFor="last_name">
+          <label className="sr-only" htmlFor="last_name">
           </label>
           <input
             name="last_name"
