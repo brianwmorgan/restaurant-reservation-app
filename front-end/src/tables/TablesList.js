@@ -11,7 +11,7 @@ export default function TablesList({ tables }) {
       <table className="table table-info table-striped table-hover table-bordered table-responsive-sm">
         <thead className="table table-info-dark">
           <tr>
-            <th scope="col" className="text-center">Table Name</th>
+            <th scope="col" className="text-left">Table Name</th>
             <th scope="col" className="text-center">Capacity</th>
             <th scope="col" className="text-center">Status</th>
             <th scope="col" className="text-center">Unseat Table</th>
