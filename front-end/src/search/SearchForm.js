@@ -56,23 +56,28 @@ export default function SearchForm() {
     <div>
       <ErrorAlert error={errors} />
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="mobile_number">Mobile Number:</label>
+        <div className="input-group mb-3">
+          <label className="sr-only" htmlFor="mobile_number">
+            Mobile Number
+          </label>
           <input
             name="mobile_number"
             type="text"
             id="mobile_number"
             placeholder="Enter a customer's phone number"
-            style={{ width: 275 }}
+            className="form-control"
+            style={{ maxWidth: 300 }}
             required={true}
             value={mobileNumber}
             onChange={handleChange}
           />
+          <div className="input-group-append">
+            <button type="submit" className="btn btn-primary mb-3">
+              <span className="oi oi-magnifying-glass mr-2" />
+              Find
+            </button>
+          </div>
         </div>
-        <button type="submit" className="btn btn-primary mb-3">
-        <span className="oi oi-magnifying-glass mr-2" />
-          Find
-        </button>
       </form>
       <div>
         <ErrorAlert error={errors} />
