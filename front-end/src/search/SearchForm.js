@@ -69,7 +69,8 @@ export default function SearchForm() {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary mb-3">
+        <span className="oi oi-magnifying-glass mr-2" />
           Find
         </button>
       </form>
