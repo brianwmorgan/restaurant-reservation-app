@@ -45,7 +45,10 @@ function Dashboard({ date }) {
   return (
     <main>
       <div>
-        <h1>Dashboard</h1>
+        <h1 className="mb-4">Dashboard</h1>
+        <div className="d-md-flex mb-3">
+          <h3 className="mb-0">{displayDate.display}</h3>
+        </div>
         <div className="input-group input-group-sm mb-2">
           <div className="d-flex d-md-inline btn-group input-group-prepend">
             <button
@@ -84,10 +87,9 @@ function Dashboard({ date }) {
           />
         </div>
         <div>
-          <h4 className="mt-4">Reservations for {displayDate.display}</h4>
+          <h4 className="mt-3">Reservations</h4>
         </div>
-        <div className="my-4">{!reservations.length && reservationsError}</div>
-
+        <div>{!reservations.length && reservationsError}</div>
         <div>
           {reservations.length > 0 && (
             <ReservationsList reservations={reservations} />

@@ -8,7 +8,7 @@ export default function TablesList({ tables }) {
 
   return (
     <div>
-      <table className="table table-info table-striped table-hover table-bordered table-responsve">
+      <table className="table table-info table-striped table-hover table-bordered table-responsive-sm">
         <thead className="table table-info-dark">
           <tr>
             <th scope="col" className="text-center">Table Name</th>
