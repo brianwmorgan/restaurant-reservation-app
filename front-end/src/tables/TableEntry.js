@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import { unSeatTable } from "../utils/api";
 
-export default function TableCard({ table }) {
+export default function TableEntry({ table }) {
   const history = useHistory();
 
   function statusText() {

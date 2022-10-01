@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { getDisplayTime } from "../utils/date-time";
 
-export default function ReservationCard({ reservation }) {
+export default function ReservationEntry({ reservation }) {
   const URL = process.env.REACT_APP_API_BASE_URL;
   const history = useHistory();
 
