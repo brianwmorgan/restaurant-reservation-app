@@ -29,15 +29,15 @@ export default function ReservationCard({ reservation }) {
 
   return (
     <tr>
-      <td className="text-left">{reservation.first_name}</td>
-      <td className="text-left">{reservation.last_name}</td>
-      <td className="text-center">{reservation.mobile_number}</td>
-      <td className="text-center">{displayTime}</td>
-      <td className="text-center">{reservation.people}</td>
-      <td className="text-center" data-reservation-id-status={reservation.reservation_id}>
+      <td className="text-left align-middle">{reservation.first_name}</td>
+      <td className="text-left align-middle">{reservation.last_name}</td>
+      <td className="text-center align-middle">{reservation.mobile_number}</td>
+      <td className="text-center align-middle">{displayTime}</td>
+      <td className="text-center align-middle">{reservation.people}</td>
+      <td className="text-center align-middle" data-reservation-id-status={reservation.reservation_id}>
         {reservation.status}
       </td>
-      <td className="text-center">
+      <td className="text-center align-middle">
         {reservation.status === "booked" && (
           <Link to={`/reservations/${reservation.reservation_id}/seat`}>
             <button className="btn btn-sm btn-primary">
@@ -47,7 +47,7 @@ export default function ReservationCard({ reservation }) {
           </Link>
         )}
       </td>
-      <td className="text-center">
+      <td className="text-center align-middle">
         {reservation.status === "booked" && (
           <Link to={`/reservations/${reservation.reservation_id}/edit`}>
             <button className="btn btn-sm btn-secondary">
@@ -57,7 +57,7 @@ export default function ReservationCard({ reservation }) {
           </Link>
         )}
       </td>
-      <td className="text-center">
+      <td className="text-center align-middle">
         {reservation.status === "booked" && (
           <button
             className="btn btn-sm btn-danger"

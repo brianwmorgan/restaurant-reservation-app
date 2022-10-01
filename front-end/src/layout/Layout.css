@@ -1,20 +1,5 @@
-h1,
-p {
-  font-family: "Kanit", sans-serif;
-  font-weight: 200;
-}
-h2,
-h3,
-h4,
-h5,
-h6,
-.side-bar {
+h1, h2, h3, h4, h5, th, td, .side-bar {
   font-family: "kanit", sans-serif;
-  font-weight: 500;
-}
-
-h3 {
-  font-size: 1.25rem;
 }
 
 .side-bar {
@@ -33,14 +18,14 @@ main,
 }
 
 /* For large screens */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 866px) {
   .side-bar {
-    min-height: 100vh;
+    min-height: 10vh;
   }
 }
 
 /* For small screens */
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 865px) {
   .navbar,
   .navbar-brand {
     position: fixed;
@@ -57,12 +42,15 @@ main,
   }
   .navbar-brand {
     top: 0;
+    bottom: 10;
   }
   .navbar-nav {
     flex-direction: row;
     display: flex;
     width: 100%;
     justify-content: space-evenly;
+    align-content: center;
+    padding-top: 25px;
   }
   main {
     padding-top: 20px;
