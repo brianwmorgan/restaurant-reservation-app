@@ -26,10 +26,13 @@ export default function TableEntry({ table }) {
     }
   }
 
-  const statusColor = {
-    occupied: "primary",
-    free: "success",
-  };
+  function statusColor() {
+    if (table.reservation_id) {
+      return "primary";
+    } else {
+      return "success";
+    }
+  }
 
   // return (
   //   <tr>
@@ -61,7 +64,10 @@ export default function TableEntry({ table }) {
   // );
 
   return (
-    <div className="card text-dark bg-light mb-3 shadow-lg m-3" style={{ width: "250px" }}>
+    <div
+      className="card text-dark bg-light mb-3 shadow-lg m-3"
+      style={{ width: "250px" }}
+    >
       <div className="card-header pb-0">
         <h5 className="card-title text-center">Table: {table.table_name}</h5>
       </div>
@@ -69,11 +75,7 @@ export default function TableEntry({ table }) {
         <h6 className="card-subtitle mb-2  text-center text-muted">
           <span className="oi oi-people m-2"> </span> Capacity: {table.capacity}
         </h6>
-        <h6
-          className={`card-subtitle mb-2 text-center text-${
-            statusColor[table.status]
-          }`}
-        >
+        <h6 className={`card-subtitle mb-2 text-center text-${statusColor()}`}>
           {statusText()}
         </h6>
         <div className="text-center">
