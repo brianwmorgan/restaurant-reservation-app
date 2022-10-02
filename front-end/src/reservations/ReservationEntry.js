@@ -112,7 +112,7 @@ export default function ReservationEntry({ reservation }) {
       <div className="col align-self-center">
         {reservation.status === "booked" && (
           <Link to={`/reservations/${reservation.reservation_id}/seat`}>
-            <button className="btn btn-sm btn-primary">
+            <button className="btn btn-sm btn-primary mr-2">
               <span className="oi oi-people mr-2" />
               Seat
             </button>
@@ -121,7 +121,7 @@ export default function ReservationEntry({ reservation }) {
 
         {reservation.status === "booked" && (
           <Link to={`/reservations/${reservation.reservation_id}/edit`}>
-            <button className="btn btn-sm btn-secondary">
+            <button className="btn btn-sm btn-secondary mr-2">
               <span className="oi oi-pencil mr-2" />
               Edit
             </button>
