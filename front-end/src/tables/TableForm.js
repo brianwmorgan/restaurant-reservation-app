@@ -68,7 +68,7 @@ export default function TableForm() {
             placeholder="Table Name"
             className="form-control"
             aria-label="table_name"
-            style={{ maxWidth: 300 }}
+            style={{ maxWidth: 200 }}
             required={true}
             value={formData.table_name}
             onChange={handleChange}
