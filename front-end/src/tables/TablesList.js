@@ -1,9 +1,9 @@
 import React from "react";
-import TableEntry from "./TableEntry";
+import TableCard from "./TableCard";
 
 export default function TablesList({ tables }) {
   const tablesList = tables.map((table) => {
-    return <TableEntry key={table.table_id} table={table} />;
+    return <TableCard key={table.table_id} table={table} />;
   });
 
   // return (

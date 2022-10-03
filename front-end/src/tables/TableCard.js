@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import { unSeatTable } from "../utils/api";
 
-export default function TableEntry({ table }) {
+export default function TableCard({ table }) {
   const history = useHistory();
 
   const handleFinishClick = async (event) => {

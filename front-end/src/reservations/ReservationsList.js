@@ -1,11 +1,11 @@
 import React from "react";
-import ReservationEntry from "./ReservationEntry";
+import ReservationCard from "./ReservationCard";
 
 export default function ReservationsList({ reservations, searchMode }) {
   if (searchMode) {
     const reservationsList = reservations.map((reservation) => {
       return (
-        <ReservationEntry
+        <ReservationCard
           key={reservation.reservation_id}
           reservation={reservation}
         />
@@ -43,7 +43,7 @@ export default function ReservationsList({ reservations, searchMode }) {
       })
       .map((reservation) => {
         return (
-          <ReservationEntry
+          <ReservationCard
             key={reservation.reservation_id}
             reservation={reservation}
           />
