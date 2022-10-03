@@ -11,7 +11,10 @@ Periodic Tables is a dynamic reservation and seating system for restaurant manag
 ### Frontend:
 - React, React Router, React Hooks, Javascript, HTML / JSX, Bootstrap, CSS, Open Iconic  
   
-![react icon](images/react.png)
+![React icon](images/react.png)
+![JS icon](images/javascript.png)
+![HTML icon](images/html.png)
+![Bootstrap icon](images/bootstrap.png)
 
 
 ### Backend:
