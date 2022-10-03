@@ -82,7 +82,10 @@ export default function TableCard({ table }) {
           <span className="oi oi-people m-2"> </span> Capacity: {table.capacity}
         </h6>
         {/* table status */}
-        <h6 className={`card-subtitle mb-2 text-center text-${statusColor()}`}>
+        <h6
+          className={`card-subtitle mb-2 text-center text-${statusColor()}`}
+          data-table-id-status={table.table_id}
+        >
           {statusText()}
         </h6>
         {/* button - displays based on whether or not a reservation is assigned to a table */}
