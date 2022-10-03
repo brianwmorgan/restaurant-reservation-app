@@ -9,7 +9,7 @@ export default function EditReservation() {
   const URL = process.env.REACT_APP_API_BASE_URL;
   const { reservation_id } = useParams();
   const [existingReservation, setExistingReservation] = useState(null);
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -23,14 +23,14 @@ export default function EditReservation() {
           reservation_date: formatAsDate(response.data.data.reservation_date),
         })
       )
-      .catch(setErrors);
+      .catch(setError);
     return () => abortController.abort();
   }, [URL, reservation_id]);
 
   return (
     <div>
       <h1 className="my-4">Edit Reservation</h1>
-      <ErrorAlert error={errors} />
+      <ErrorAlert error={error} />
       {existingReservation && (
         <ReservationForm
           existingReservation={existingReservation}

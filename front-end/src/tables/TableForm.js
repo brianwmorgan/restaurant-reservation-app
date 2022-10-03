@@ -12,7 +12,7 @@ export default function TableForm() {
   };
 
   const [formData, setFormData] = useState(intialFormState);
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -31,7 +31,7 @@ export default function TableForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrors(null);
+    setError(null);
     const abortController = new AbortController();
     try {
       await axios.post(process.env.REACT_APP_API_BASE_URL + `/tables`, {
@@ -40,14 +40,14 @@ export default function TableForm() {
       });
       history.push(`/dashboard`);
     } catch (error) {
-      setErrors(error.response.data.error);
+      setError(error.response.data.error);
     }
     abortController.abort();
   };
 
   return (
     <div>
-      <ErrorAlert error={errors} />
+      <ErrorAlert error={error} />
       <form onSubmit={handleSubmit}>
         <div className="input-group mb-3">
           <div className="input-group-prepend">

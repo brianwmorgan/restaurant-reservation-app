@@ -10,11 +10,11 @@ export default function SeatReservation() {
   const { reservation_id } = useParams();
   const [tables, setTables] = useState([]);
   const [selectedTable, setSelectedTable] = useState(null);
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const abortController = new AbortController();
-    setErrors(null);
+    setError(null);
     async function listTables() {
       try {
         const response = await axios.get(URL + "/tables", {
@@ -23,7 +23,7 @@ export default function SeatReservation() {
         setTables(response.data.data);
         setSelectedTable(response.data.data[0].table_id);
       } catch (error) {
-        setErrors(error);
+        setError(error);
       }
     }
     listTables();
@@ -47,14 +47,14 @@ export default function SeatReservation() {
       });
       history.push("/dashboard");
     } catch (error) {
-      setErrors(error.response.data.error);
+      setError(error.response.data.error);
     }
   };
 
   return (
     <div>
       <h4>Seat Reservation</h4>
-      <ErrorAlert error={errors} />
+      <ErrorAlert error={error} />
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="table_id">Seat reservation at table:</label>

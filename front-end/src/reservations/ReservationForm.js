@@ -23,7 +23,7 @@ export default function ReservationForm({
   const [formData, setFormData] = useState(
     existingReservation || intialFormState
   );
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -50,7 +50,7 @@ export default function ReservationForm({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrors(null);
+    setError(null);
     const abortController = new AbortController();
     try {
       if (editMode) {
@@ -66,7 +66,7 @@ export default function ReservationForm({
       }
       history.push(`/dashboard?date=${formData.reservation_date}`);
     } catch (error) {
-      setErrors(error.response.data.error);
+      setError(error.response.data.error);
     }
     abortController.abort();
   };
@@ -74,7 +74,7 @@ export default function ReservationForm({
   return (
     <div>
       <div className="mb-4">
-        <ErrorAlert error={errors} />
+        <ErrorAlert error={error} />
       </div>
       <form onSubmit={handleSubmit}>
         <div className="input-group mb-3">
