@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { getDisplayDate, getDisplayTime } from "../utils/date-time";
 
+// Defines how each reservation will be displayed on the dashboard and search pages.
+
 export default function ReservationCard({ reservation }) {
   const URL = process.env.REACT_APP_API_BASE_URL;
   const history = useHistory();
@@ -25,8 +27,17 @@ export default function ReservationCard({ reservation }) {
     }
   };
 
+  // Formats the date and time.
   const displayDate = getDisplayDate(reservation.reservation_date);
   const displayTime = getDisplayTime(reservation.reservation_time);
+
+  // Defines the Bootstrap classNames for color based on the reservation status.
+  const statusColor = {
+    booked: "success",
+    seated: "primary",
+    finished: "secondary",
+    cancelled: "danger",
+  };
 
   // return (
   //   <tr>
@@ -73,15 +84,9 @@ export default function ReservationCard({ reservation }) {
   //   </tr>
   // );
 
-  const statusColor = {
-    booked: "success",
-    seated: "primary",
-    finished: "secondary",
-    cancelled: "danger",
-  };
-
   return (
     <div className="row flex-column flex-md-row bg-light border mx-1 my-3 px-2 py-2">
+      {/* status badge column */}
       <div
         className={`col text-center text-md-left align-self-center mr-3`}
         style={{ maxWidth: "100px" }}
@@ -95,6 +100,8 @@ export default function ReservationCard({ reservation }) {
           {reservation.status}
         </span>
       </div>
+
+      {/* party information column */}
       <div className="col align-self-center">
         <h5 className="mb-1">
           {reservation.first_name} {reservation.last_name}
@@ -104,11 +111,14 @@ export default function ReservationCard({ reservation }) {
           <span className="ml-3">{reservation.mobile_number}</span>
         </p>
       </div>
+
+      {/* date and time column */}
       <div className={`col align-self-center`}>
         <p className="mb-0">{displayDate.display}</p>
         <p className="mb-0">{displayTime}</p>
       </div>
 
+      {/* buttons column - displays based on reservation status */}
       <div className="col align-self-center">
         {reservation.status === "booked" && (
           <Link to={`/reservations/${reservation.reservation_id}/seat`}>

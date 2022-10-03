@@ -1,5 +1,7 @@
 const knex = require("../db/connection");
 
+// Data query services for 'tables' resources //
+
 function createTable(newTable) {
   return knex("tables")
     .insert(newTable)
@@ -53,6 +55,8 @@ async function unseatTable(tableId, reservationId) {
 function listTables() {
   return knex("tables").select("*").orderBy("table_name");
 }
+
+// Exports //
 
 module.exports = {
   createTable,

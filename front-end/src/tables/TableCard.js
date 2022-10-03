@@ -2,6 +2,8 @@ import React from "react";
 import { useHistory } from "react-router";
 import { unSeatTable } from "../utils/api";
 
+// Defines how each table will be displayed on the dashboard page.
+
 export default function TableCard({ table }) {
   const history = useHistory();
 
@@ -18,6 +20,7 @@ export default function TableCard({ table }) {
     }
   };
 
+  // Defines the text for the table status based on whether or not a reservation is assigned to a table.
   function statusText() {
     if (table.reservation_id) {
       return "occupied";
@@ -26,6 +29,7 @@ export default function TableCard({ table }) {
     }
   }
 
+  // Defines the Bootstrap classNames for color based on whether or not a reservation is assigned to a table.
   function statusColor() {
     if (table.reservation_id) {
       return "primary";
@@ -68,16 +72,20 @@ export default function TableCard({ table }) {
       className="card text-dark bg-light mb-3 shadow-lg m-3"
       style={{ width: "250px" }}
     >
+      {/* table name */}
       <div className="card-header pb-0">
         <h5 className="card-title text-center">Table: {table.table_name}</h5>
       </div>
       <div className="card-body">
+        {/* table capacity */}
         <h6 className="card-subtitle mb-2  text-center text-muted">
           <span className="oi oi-people m-2"> </span> Capacity: {table.capacity}
         </h6>
+        {/* table status */}
         <h6 className={`card-subtitle mb-2 text-center text-${statusColor()}`}>
           {statusText()}
         </h6>
+        {/* button - displays based on whether or not a reservation is assigned to a table */}
         <div className="text-center">
           {table.reservation_id && (
             <button

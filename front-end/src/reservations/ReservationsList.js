@@ -1,6 +1,10 @@
 import React from "react";
 import ReservationCard from "./ReservationCard";
 
+// Defines the reservations list for the dashboard and search pages.
+// If 'searchMode' is true, all reservations are returned for the search page.
+// If 'searchMode' is false, reservations with a status of 'cancelled' are not returned for the dashboard.
+
 export default function ReservationsList({ reservations, searchMode }) {
   if (searchMode) {
     const reservationsList = reservations.map((reservation) => {
@@ -11,6 +15,7 @@ export default function ReservationsList({ reservations, searchMode }) {
         />
       );
     });
+
     // return (
     //   <div>
     //     <table className="table table-success table-striped table-hover table-bordered table-responsive-sm">
@@ -32,10 +37,7 @@ export default function ReservationsList({ reservations, searchMode }) {
     //   </div>
     // );
 
-    return (
-      <div>{reservationsList}</div>
-    )
-
+    return <div>{reservationsList}</div>;
   } else {
     const reservationsList = reservations
       .filter((reservation) => {
@@ -71,8 +73,6 @@ export default function ReservationsList({ reservations, searchMode }) {
     //   </div>
     // );
 
-    return (
-      <div>{reservationsList}</div>
-    )
+    return <div>{reservationsList}</div>;
   }
 }

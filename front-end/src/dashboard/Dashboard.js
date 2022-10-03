@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import useQuery from "../utils/useQuery";
 import { listReservations, listTables } from "../utils/api";
 import { today, previous, next, getDisplayDate } from "../utils/date-time";
 import ReservationsList from "../reservations/ReservationsList";
 import TablesList from "../tables/TablesList";
 import ErrorAlert from "../layout/ErrorAlert";
-import { useHistory } from "react-router";
 
-/**
- * Defines the dashboard page.
- * @param date
- *  the date for which the user wants to view reservations.
- * @returns {JSX.Element}
- */
-
+// Defines the dashboard page.
+// Displays the reservations list for the 'date' param and the tables list.
 function Dashboard({ date }) {
   const history = useHistory();
   const query = useQuery();
@@ -26,6 +21,8 @@ function Dashboard({ date }) {
 
   useEffect(loadDashboard, [date, displayDate.display]);
 
+  // Loads the reservations and tables lists and sets them to their respective states.
+  // Sets any errors to the appropriate 'error' state.
   function loadDashboard() {
     const abortController = new AbortController();
     setReservationsError(null);
@@ -33,7 +30,7 @@ function Dashboard({ date }) {
       .then(setReservations)
       .catch(
         setReservationsError(
-          <div className="alert alert-danger border border-danger my-2">
+          <div className="alert alert-info border border-info my-2">
             No Reservations on {displayDate.display}
           </div>
         )
@@ -46,6 +43,8 @@ function Dashboard({ date }) {
     <main>
       <div>
         <h1 className="mb-4">Dashboard</h1>
+
+        {/* date section */}
         <div className="d-md-flex mb-3">
           <h3 className="mb-0">{displayDate.display}</h3>
         </div>
@@ -86,6 +85,8 @@ function Dashboard({ date }) {
             value={date}
           />
         </div>
+
+        {/* reservations section */}
         <div>
           <h4 className="mt-3">Reservations</h4>
         </div>
@@ -95,6 +96,8 @@ function Dashboard({ date }) {
             <ReservationsList reservations={reservations} />
           )}
         </div>
+
+        {/* tables section */}
         <ErrorAlert error={tablesError} />
         <div>
           <h4 className="mt-4">Tables</h4>

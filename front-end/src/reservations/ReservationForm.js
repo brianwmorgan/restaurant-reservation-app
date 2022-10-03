@@ -4,6 +4,9 @@ import axios from "axios";
 import formatPhoneNumber from "../utils/formatPhoneNumber";
 import ErrorAlert from "../layout/ErrorAlert";
 
+// Defines the form for creating or editing a reservation.
+// If 'editMode' is true, the form is used to edit an existing reservation.
+
 export default function ReservationForm({
   existingReservation,
   editMode = false,
@@ -68,7 +71,7 @@ export default function ReservationForm({
     } catch (error) {
       setError(error.response.data.error);
     }
-    abortController.abort();
+    return () => abortController.abort();
   };
 
   return (
@@ -77,6 +80,7 @@ export default function ReservationForm({
         <ErrorAlert error={error} />
       </div>
       <form onSubmit={handleSubmit}>
+        {/* first and last name fields */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text">
@@ -112,6 +116,7 @@ export default function ReservationForm({
           />
         </div>
 
+        {/* mobile number field */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
@@ -136,6 +141,7 @@ export default function ReservationForm({
           />
         </div>
 
+        {/* date field */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
@@ -159,6 +165,7 @@ export default function ReservationForm({
           />
         </div>
 
+        {/* time field */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
@@ -182,6 +189,8 @@ export default function ReservationForm({
             onChange={handleChange}
           />
         </div>
+
+        {/* people field */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
@@ -204,6 +213,8 @@ export default function ReservationForm({
             onChange={handleChange}
           />
         </div>
+
+        {/* buttons */}
         <button
           type="button"
           className="btn btn-secondary mr-1 mb-3"

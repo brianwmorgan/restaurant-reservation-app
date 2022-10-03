@@ -1,6 +1,6 @@
 const knex = require("../db/connection");
 
-// CRUDL SERVICES FOR 'RESERVATIONS' RESOURCES //
+// Data query services for 'reservations' resources //
 
 function createReservation(newReservation) {
   return knex("reservations")
@@ -52,7 +52,7 @@ function listReservations(date, mobile_number) {
   }
 }
 
-// EXPORTS //
+// Exports //
 
 module.exports = {
   createReservation,
