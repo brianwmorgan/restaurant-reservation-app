@@ -1,7 +1,7 @@
 const reservationsService = require("./reservations.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
-// VALIDATION MIDDLEWARES //
+// Validation Middlewares //
 
 function bodyDataHas(propertyName) {
   return function (req, res, next) {
@@ -158,7 +158,7 @@ function statusPropertyIsBooked(req, res, next) {
   }
 }
 
-// HTTP REQUEST HANDLERS FOR 'RESERVATIONS' RESOURCES //
+// HTTP request handlers for 'reservations' resources //
 
 async function createReservation(req, res) {
   const newReservation = req.body.data;
@@ -211,7 +211,7 @@ async function listReservations(req, res) {
   }
 }
 
-// EXPORTS //
+// Exports //
 
 module.exports = {
   createReservation: [

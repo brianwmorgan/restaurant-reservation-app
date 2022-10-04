@@ -2,7 +2,7 @@ const tablesService = require("./tables.service");
 const reservationsService = require("../reservations/reservations.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
-// VALIDATION MIDDLEWARES //
+// Validation middlewares //
 
 function bodyDataHas(propertyName) {
   return function (req, res, next) {
@@ -120,7 +120,7 @@ function reservationIsNotAlreadySeated(req, res, next) {
   }
 }
 
-// HTTP REQUEST HANDLERS FOR 'TABLES' RESOURCES //
+// HTTP request handlers for 'tables' resources //
 
 async function createTable(req, res) {
   const newTable = req.body.data;
@@ -153,7 +153,7 @@ async function listTables(req, res) {
   res.status(200).json({ data: responseData });
 }
 
-// EXPORTS //
+// Exports //
 
 module.exports = {
   createTable: [

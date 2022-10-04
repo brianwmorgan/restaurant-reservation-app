@@ -2,10 +2,7 @@ const dateFormat = /\d\d\d\d-\d\d-\d\d/;
 const timeFormat = /\d\d:\d\d/;
 
 /**
- * Formats a Date object as YYYY-MM-DD.
- *
- * This function is *not* exported because the UI should generally avoid working directly with Date instance.
- * You may export this function if you need it.
+Formats a Date object as YYYY-MM-DD.
  *
  * @param date
  *  an instance of a date object

@@ -1,5 +1,7 @@
 const knex = require("../db/connection");
 
+// Data query services for 'tables' resources //
+
 function createTable(newTable) {
   return knex("tables")
     .insert(newTable)
@@ -17,7 +19,7 @@ async function seatTable(tableId, reservationId) {
 
     return trx("tables")
       .where({ table_id: tableId })
-      .update({ status: "occupied", reservation_id: reservationId })
+      .update({ reservation_id: reservationId })
       .then(function () {
         return trx("reservations")
           .where({ reservation_id: reservationId })
@@ -37,7 +39,7 @@ async function unseatTable(tableId, reservationId) {
     return knex("tables")
       .select("*")
       .where({ table_id: tableId })
-      .update({ status: "free", reservation_id: null })
+      .update({ reservation_id: null })
       .then(function () {
         return trx("reservations")
           .where({ reservation_id: reservationId })
@@ -53,6 +55,8 @@ async function unseatTable(tableId, reservationId) {
 function listTables() {
   return knex("tables").select("*").orderBy("table_name");
 }
+
+// Exports //
 
 module.exports = {
   createTable,

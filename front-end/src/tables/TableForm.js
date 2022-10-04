@@ -3,6 +3,8 @@ import { useHistory } from "react-router";
 import axios from "axios";
 import ErrorAlert from "../layout/ErrorAlert";
 
+// Defines the form for creating a new table.
+
 export default function TableForm() {
   const history = useHistory();
 
@@ -12,7 +14,7 @@ export default function TableForm() {
   };
 
   const [formData, setFormData] = useState(intialFormState);
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -31,7 +33,7 @@ export default function TableForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrors(null);
+    setError(null);
     const abortController = new AbortController();
     try {
       await axios.post(process.env.REACT_APP_API_BASE_URL + `/tables`, {
@@ -40,15 +42,16 @@ export default function TableForm() {
       });
       history.push(`/dashboard`);
     } catch (error) {
-      setErrors(error.response.data.error);
+      setError(error.response.data.error);
     }
     abortController.abort();
   };
 
   return (
     <div>
-      <ErrorAlert error={errors} />
+      <ErrorAlert error={error} />
       <form onSubmit={handleSubmit}>
+        {/* table name field */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
@@ -65,12 +68,14 @@ export default function TableForm() {
             placeholder="Table Name"
             className="form-control"
             aria-label="table_name"
-            style={{ maxWidth: 300 }}
+            style={{ maxWidth: 200 }}
             required={true}
             value={formData.table_name}
             onChange={handleChange}
           />
         </div>
+
+        {/* capacity field */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
@@ -94,6 +99,8 @@ export default function TableForm() {
             onChange={handleChange}
           />
         </div>
+
+        {/* buttons */}
         <button
           type="button"
           className="btn btn-secondary mr-1 mb-3"

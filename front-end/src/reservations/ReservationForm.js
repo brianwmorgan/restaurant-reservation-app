@@ -4,6 +4,9 @@ import axios from "axios";
 import formatPhoneNumber from "../utils/formatPhoneNumber";
 import ErrorAlert from "../layout/ErrorAlert";
 
+// Defines the form for creating or editing a reservation on the new reservation and edit reservation pages.
+// If 'editMode' is true, the form is used to edit an existing reservation.
+
 export default function ReservationForm({
   existingReservation,
   editMode = false,
@@ -23,7 +26,7 @@ export default function ReservationForm({
   const [formData, setFormData] = useState(
     existingReservation || intialFormState
   );
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -48,9 +51,10 @@ export default function ReservationForm({
     });
   };
 
+  // Handles a request to update an existing reservation or create a new reservation.
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrors(null);
+    setError(null);
     const abortController = new AbortController();
     try {
       if (editMode) {
@@ -66,17 +70,18 @@ export default function ReservationForm({
       }
       history.push(`/dashboard?date=${formData.reservation_date}`);
     } catch (error) {
-      setErrors(error.response.data.error);
+      setError(error.response.data.error);
     }
-    abortController.abort();
+    return () => abortController.abort();
   };
 
   return (
     <div>
       <div className="mb-4">
-        <ErrorAlert error={errors} />
+        <ErrorAlert error={error} />
       </div>
       <form onSubmit={handleSubmit}>
+        {/* first and last name fields */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text">
@@ -94,6 +99,7 @@ export default function ReservationForm({
             placeholder="First Name"
             className="form-control"
             aria-label="first_name"
+            style={{ maxWidth: 200 }}
             required={true}
             value={formData.first_name}
             onChange={handleChange}
@@ -106,12 +112,14 @@ export default function ReservationForm({
             placeholder="Last Name"
             className="form-control"
             aria-label="last_name"
+            style={{ maxWidth: 200 }}
             required={true}
             value={formData.last_name}
             onChange={handleChange}
           />
         </div>
 
+        {/* mobile number field */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
@@ -129,6 +137,7 @@ export default function ReservationForm({
             placeholder="XXX-XXX-XXXX"
             className="form-control"
             aria-label="mobile_number"
+            style={{ maxWidth: 200 }}
             required={true}
             minLength="12"
             value={formData.mobile_number}
@@ -136,6 +145,7 @@ export default function ReservationForm({
           />
         </div>
 
+        {/* date field */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
@@ -153,12 +163,14 @@ export default function ReservationForm({
             placeholder="YYYY-MM-DD"
             className="form-control"
             aria-label="reservation_date"
+            style={{ maxWidth: 200 }}
             required={true}
             value={formData.reservation_date}
             onChange={handleChange}
           />
         </div>
 
+        {/* time field */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
@@ -176,12 +188,15 @@ export default function ReservationForm({
             placeholder="HH:MM"
             className="form-control"
             aria-label="reservation_time"
+            style={{ maxWidth: 200 }}
             pattern="[0-9]{2}:[0-9]{2}"
             required={true}
             value={formData.reservation_time}
             onChange={handleChange}
           />
         </div>
+
+        {/* people field */}
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
@@ -198,12 +213,15 @@ export default function ReservationForm({
             id="people"
             className="form-control"
             aria-label="people"
+            style={{ maxWidth: 200 }}
             min="1"
             required={true}
             value={formData.people}
             onChange={handleChange}
           />
         </div>
+
+        {/* buttons */}
         <button
           type="button"
           className="btn btn-secondary mr-1 mb-3"
