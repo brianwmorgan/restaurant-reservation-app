@@ -19,7 +19,7 @@ async function seatTable(tableId, reservationId) {
 
     return trx("tables")
       .where({ table_id: tableId })
-      .update({ status: "occupied", reservation_id: reservationId })
+      .update({ reservation_id: reservationId })
       .then(function () {
         return trx("reservations")
           .where({ reservation_id: reservationId })
@@ -39,7 +39,7 @@ async function unseatTable(tableId, reservationId) {
     return knex("tables")
       .select("*")
       .where({ table_id: tableId })
-      .update({ status: "free", reservation_id: null })
+      .update({ reservation_id: null })
       .then(function () {
         return trx("reservations")
           .where({ reservation_id: reservationId })
