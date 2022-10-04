@@ -4,7 +4,7 @@ import axios from "axios";
 import TableOptions from "../tables/TableOptions";
 import ErrorAlert from "../layout/ErrorAlert";
 
-// Defines the seat form for seating a reservation at a table.
+// Defines the seat form for seating a reservation at a table on the seat page.
 
 export default function SeatReservation() {
   const URL = process.env.REACT_APP_API_BASE_URL;
@@ -41,6 +41,7 @@ export default function SeatReservation() {
     setSelectedTable(event.target.value);
   };
 
+  // Handles a request to update the table's 'reservation_id' assignment.
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

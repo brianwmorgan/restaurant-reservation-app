@@ -4,7 +4,7 @@ import axios from "axios";
 import formatPhoneNumber from "../utils/formatPhoneNumber";
 import ErrorAlert from "../layout/ErrorAlert";
 
-// Defines the form for creating or editing a reservation.
+// Defines the form for creating or editing a reservation on the new reservation and edit reservation pages.
 // If 'editMode' is true, the form is used to edit an existing reservation.
 
 export default function ReservationForm({
@@ -51,6 +51,7 @@ export default function ReservationForm({
     });
   };
 
+  // Handles a request to update an existing reservation or create a new reservation.
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError(null);

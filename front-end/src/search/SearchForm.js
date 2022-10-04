@@ -4,7 +4,7 @@ import formatPhoneNumber from "../utils/formatPhoneNumber";
 import { listReservations } from "../utils/api";
 import ReservationsList from "../reservations/ReservationsList";
 
-// Defines the form for searching for existing reservations.
+// Defines the form for searching for existing reservations on the search page.
 
 export default function SearchForm() {
   const [mobileNumber, setMobileNumber] = useState("");

@@ -5,7 +5,7 @@ import ReservationForm from "./ReservationForm";
 import ErrorAlert from "../layout/ErrorAlert";
 import { formatAsDate } from "../utils/date-time";
 
-// Defines the EditReservation component.
+// Defines the EditReservation component for the edit reservation page.
 
 export default function EditReservation() {
   const URL = process.env.REACT_APP_API_BASE_URL;
