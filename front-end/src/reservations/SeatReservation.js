@@ -56,24 +56,26 @@ export default function SeatReservation() {
 
   return (
     <div>
-      <h4>Seat Reservation</h4>
+      <h1 className="my-4">Seat Reservation</h1>
       <ErrorAlert error={error} />
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="table_id">Seat reservation at table:</label>
-          <select name="table_id" onChange={handleChange}>
+          <label className="mr-2 mb-3 font-weight-bolder" htmlFor="table_id">Seat reservation at table:</label>
+          <select name="table_id" className="border border-dark border-2" onChange={handleChange}>
             <option>Select an option</option>
             {options}
           </select>
         </div>
         <button
           type="button"
-          className="btn btn-danger"
+          className="btn btn-secondary mr-1 mb-3"
           onClick={() => history.goBack()}
         >
+          <span className="oi oi-circle-x mr-2" />
           Cancel
         </button>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary mx-1 mb-3">
+        <span className="oi oi-circle-check mr-2" />
           Submit
         </button>
       </form>

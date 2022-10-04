@@ -99,7 +99,7 @@ export default function ReservationForm({
             placeholder="First Name"
             className="form-control"
             aria-label="first_name"
-            style={{ maxWidth: 300 }}
+            style={{ maxWidth: 200 }}
             required={true}
             value={formData.first_name}
             onChange={handleChange}
@@ -112,7 +112,7 @@ export default function ReservationForm({
             placeholder="Last Name"
             className="form-control"
             aria-label="last_name"
-            style={{ maxWidth: 300 }}
+            style={{ maxWidth: 200 }}
             required={true}
             value={formData.last_name}
             onChange={handleChange}
@@ -137,7 +137,7 @@ export default function ReservationForm({
             placeholder="XXX-XXX-XXXX"
             className="form-control"
             aria-label="mobile_number"
-            style={{ maxWidth: 300 }}
+            style={{ maxWidth: 200 }}
             required={true}
             minLength="12"
             value={formData.mobile_number}
@@ -163,7 +163,7 @@ export default function ReservationForm({
             placeholder="YYYY-MM-DD"
             className="form-control"
             aria-label="reservation_date"
-            style={{ maxWidth: 300 }}
+            style={{ maxWidth: 200 }}
             required={true}
             value={formData.reservation_date}
             onChange={handleChange}
@@ -188,7 +188,7 @@ export default function ReservationForm({
             placeholder="HH:MM"
             className="form-control"
             aria-label="reservation_time"
-            style={{ maxWidth: 300 }}
+            style={{ maxWidth: 200 }}
             pattern="[0-9]{2}:[0-9]{2}"
             required={true}
             value={formData.reservation_time}
@@ -213,7 +213,7 @@ export default function ReservationForm({
             id="people"
             className="form-control"
             aria-label="people"
-            style={{ maxWidth: 300 }}
+            style={{ maxWidth: 200 }}
             min="1"
             required={true}
             value={formData.people}
