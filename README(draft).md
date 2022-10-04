@@ -48,7 +48,7 @@ The **Edit Reservation** page allows a user to edit an existing reservation. Whe
 The **New Table** page allows a user to create a new table in the restaurant. Both fields are required. The _Table Name_ must be at least two characters. The _Capacity_ must be at least 1. If any inputs are invalid the user will get an informative error message.  
 The **Seat Table** page allows a user to seat a specific reservation at a table in the restaurant. A drop-down list provides table options. If a table is currently occupied or does not have sufficient capacity for that specific reservation, the user will get an informative error message.  
   
-![new-table-photo](images/new-table.png) ![seat-reservation-photo](images/seat-reservation.png)
+![new-table-photo](images/new-table.png) ![seat-reservation-photo](images/.png)
   
 ## Backend - API
 
