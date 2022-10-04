@@ -31,21 +31,19 @@ The **Dashboard** page serves as the homepage for the app. The navigation bar in
   
 ![dashboard-photo-1](images/dashboard1.png)  
 ![dashboard-photo-2](images/dashboard2.png)  
-
+  
 ### Search
 The **Search** page allows a user to look-up reservations in the system by phone number. Partial phone numbers are acceptable inputs. If there are any reservations that match the input, they are displayed in a list that includes options to seat, edit, or cancel a reservation if its current status is _booked_. If there are no matching reservations, the user will get a "No reservations found" message.  
   
 ![search-photo-1](images/search.png)  
-
-### New Reservation
-The **New Reservation** page allows a user to create a new reservation. All fields are required and have constraints. The _Mobile Number_ must be 10 digits. The _Date of Reservation_ must be for today or a future date and cannot be on Tuesdays (when the restaurant is closed). The _Time of Reservation_ must be between 10:30am and 9:30pm. The _Number of People_ must be at least 1. If any inputs are invalid, the user will get an informative error message.  
   
-![new-reservation-photo](images/new-reservation.png) 
-
-### Edit Reservation
+### New Reservation / Edit Reservation
+The **New Reservation** page allows a user to create a new reservation. All fields are required and have constraints. The _Mobile Number_ must be 10 digits. The _Date of Reservation_ must be for today or a future date and cannot be on Tuesdays (when the restaurant is closed). The _Time of Reservation_ must be between 10:30am and 9:30pm. The _Number of People_ must be at least 1. If any inputs are invalid, the user will get an informative error message.  
 The **Edit Reservation** page allows a user to edit an existing reservation. When a user navigates to this page, the fields will be populated with the existing reservation's current information, which the user can edit. All constraints from the **New Reservation** page are present on this page. If any inputs are invalid, the user will get an informative error message.  
-![edit card screen](/screenshots/new/edit-card-screen.jpg) 
-
+  
+![new-reservation-photo](images/new-reservation.png)
+![edit-reservation-photo](images/edit-reservation.png)  
+  
 ### New Table
 The **New Table** page allows a user to create a new table in the restaurant. Both fields are required. The _Table Name_ must be at least two characters. The _Capacity_ must be at least 1. If any inputs are invalid the user will get an informative error message.  
 ![edit card screen](/screenshots/new/edit-card-screen.jpg) 
