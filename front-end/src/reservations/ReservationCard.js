@@ -41,7 +41,7 @@ export default function ReservationCard({ reservation }) {
   };
 
   return (
-    <div className="row flex-column flex-md-row bg-light border mx-1 my-3 px-2 py-2">
+    <div className="row flex-column flex-md-row bg-light bg-gradient border mx-1 my-3 px-2 py-2">
       {/* status badge column */}
       <div
         className={`col text-center text-md-left align-self-center mr-3`}
