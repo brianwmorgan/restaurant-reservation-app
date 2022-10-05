@@ -1,4 +1,4 @@
-# Periodic Tables | Restaurant Reservation and Seating System
+# Periodic Tables | Restaurant Reservation System
 
 Periodic Tables is a dynamic reservation and seating system for restaurant managers and employees. A user can view reservations by date, add new reservations, edit/cancel/search for existing reservations, add new tables, and seat/unseat reservations at tables.
 
@@ -23,7 +23,7 @@ Periodic Tables is a dynamic reservation and seating system for restaurant manag
 ![Node.js icon](images/node-js.png)
 ![Express icon](images/express.png)
 ![PostgreSQL icon](images/postgresql.png)
-![Knex.js icon](images/knex-js.png)
+![Knex.js icon](images/knex.png)
 
 ## Frontend - How the App Works
 ### Dashboard
