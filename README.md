@@ -25,6 +25,16 @@ Periodic Tables is a dynamic reservation and seating system for restaurant manag
 ![PostgreSQL icon](images/postgresql.png)
 ![Knex.js icon](images/knex.png)
 
+## Installation
+
+1. Fork and clone this repository.
+1. Run `cp ./back-end/.env.sample ./back-end/.env`.
+1. Update the `./back-end/.env` file with the connection URL's to your ElephantSQL database instance.
+1. Run `cp ./front-end/.env.sample ./front-end/.env`.
+1. You should not need to make changes to the `./front-end/.env` file unless you want to connect to a backend at a location other than `http://localhost:5001`.
+1. Run `npm install` to install project dependencies.
+1. Run `npm run start:dev` to start your server in development mode.
+
 ## Frontend - How the App Works
 ### Dashboard
 The **Dashboard** page serves as the homepage for the app. The navigation bar includes links to the **Dashboard**, **Search**, **New Reservation**, and **New Table** pages. A user can toggle between different dates by clicking the **Previous Date**, **Today**, and **Next Date** buttons or select a specific calendar date with the datepicker. In the **Reservations** section, a user can see all reservations for a given date. For each individual reservation, a user can navigate to the **Seat Reservation** and **Edit Reservation** pages as well as cancel that specific reservation by clicking the appropriate buttons.  In the **Tables** section, a user can see all tables in the restaurant. For each individual table, a user can unseat a table and finish the reservation assigned to it by clicking the **Finish** button.  
@@ -123,13 +133,3 @@ An example record looks like the following:
     "reservation_id": 8,
   }
 ```
-
-## Installation
-
-1. Fork and clone this repository.
-1. Run `cp ./back-end/.env.sample ./back-end/.env`.
-1. Update the `./back-end/.env` file with the connection URL's to your ElephantSQL database instance.
-1. Run `cp ./front-end/.env.sample ./front-end/.env`.
-1. You should not need to make changes to the `./front-end/.env` file unless you want to connect to a backend at a location other than `http://localhost:5001`.
-1. Run `npm install` to install project dependencies.
-1. Run `npm run start:dev` to start your server in development mode.
