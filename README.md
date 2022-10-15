@@ -15,7 +15,7 @@ Periodic Tables is a reservation and seating system for restaurant managers and 
 ![React icon](images/react.png)
 ![Bootstrap icon](images/bootstrap.png)
 ![HTML icon](images/html.png)
-![CSS icon](images/css3.png)
+![CSS icon](images/css.png)
   
 ### Backend:
 - Node.js, Express, PostgreSQL, Knex  
