@@ -1,6 +1,6 @@
 # Periodic Tables | Restaurant Reservation System
 
-Periodic Tables is a reservation and seating system for restaurant managers and employees. A user can view reservations by date, add new reservations, edit/cancel/search for existing reservations, add new tables, and seat/unseat reservations at tables.
+Periodic Tables is a full-stack reservation and seating system for restaurant managers and employees. A user can view reservations by date, add new reservations, edit/cancel/search for existing reservations, add new tables, and seat/unseat reservations at tables.
 
 ## Links
 
