@@ -5,7 +5,7 @@ Periodic Tables is a reservation and seating system for restaurant managers and 
 ## Links
 
 [Frontend](https://res-app-client-morgan.herokuapp.com/) deployed to Heroku  
-[Backend](https://res-app-server-morgan.herokuapp.com/) deployed to Heroku (use `/reservations` or `/tables` routes listed below)  
+[Backend](https://res-app-server-morgan.herokuapp.com/reservations) deployed to Heroku (use `/reservations` or `/tables` routes listed below)  
 
 ## Technology
 
