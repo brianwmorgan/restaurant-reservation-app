@@ -3,13 +3,15 @@
 Periodic Tables is a reservation and seating system for restaurant managers and employees. A user can view reservations by date, add new reservations, edit/cancel/search for existing reservations, add new tables, and seat/unseat reservations at tables.
 
 ## Links
-[Live Heroku Client App](https://res-app-client-morgan.herokuapp.com/)  
-[Live Heroku Server](https://res-app-server-morgan.herokuapp.com/)
+
+Frontend deployed at https://res-app-client-morgan.herokuapp.com/  
+Backend deployed at https://res-app-server-morgan.herokuapp.com/
 (use `/reservations` or `/tables` routes listed below)
 
 ## Technology
 
 ### Frontend:
+
 - Javascript, React, React Router, React Hooks, Bootstrap, Open Iconic, HTML, CSS  
   
 ![JS icon](images/javascript.png)
@@ -19,6 +21,7 @@ Periodic Tables is a reservation and seating system for restaurant managers and 
 ![CSS icon](images/css.png)
   
 ### Backend:
+
 - Node.js, Express, PostgreSQL, Knex  
   
 ![Node.js icon](images/node-js.png)
@@ -37,18 +40,22 @@ Periodic Tables is a reservation and seating system for restaurant managers and 
 1. Run `npm run start:dev` to start your server in development mode.
 
 ## Frontend - How the App Works
+
 ### Dashboard
+
 The **Dashboard** page serves as the homepage for the app. The navigation bar includes links to the **Dashboard**, **Search**, **New Reservation**, and **New Table** pages. A user can toggle between different dates by clicking the **Previous Date**, **Today**, and **Next Date** buttons or select a specific calendar date with the datepicker. In the **Reservations** section, a user can see all reservations for a given date. For each individual reservation, a user can navigate to the **Seat Reservation** and **Edit Reservation** pages as well as cancel that specific reservation by clicking the appropriate buttons.  In the **Tables** section, a user can see all tables in the restaurant. For each individual table, a user can unseat a table and finish the reservation assigned to it by clicking the **Finish** button.  
   
 ![dashboard-photo-1](images/dashboard1.png)  
 ![dashboard-photo-2](images/dashboard2.png)  
   
 ### Search
+
 The **Search** page allows a user to look-up reservations in the system by phone number. Partial phone numbers are acceptable inputs. If there are any reservations that match the input, they are displayed in a list that includes options to seat, edit, or cancel a reservation if its current status is _booked_. If there are no matching reservations, the user will get a "No reservations found" message.  
   
 ![search-photo-1](images/search.png)  
   
 ### New Reservation / Edit Reservation
+
 The **New Reservation** page allows a user to create a new reservation. All fields are required and have constraints. The _Mobile Number_ must be 10 digits. The _Date of Reservation_ must be for today or a future date and cannot be on Tuesdays (when the restaurant is closed). The _Time of Reservation_ must be between 10:30am and 9:30pm. The _Number of People_ must be at least 1. If any inputs are invalid, the user will get an informative error message.  
 The **Edit Reservation** page allows a user to edit an existing reservation. When a user navigates to this page, the fields will be populated with the existing reservation's current information, which the user can edit. All constraints from the **New Reservation** page are present on this page. If any inputs are invalid, the user will get an informative error message.  
   
@@ -56,12 +63,13 @@ The **Edit Reservation** page allows a user to edit an existing reservation. Whe
 ![edit-reservation-photo](images/edit-reservation.png)  
   
 ### New Table / Seat Reservation
+
 The **New Table** page allows a user to create a new table in the restaurant. Both fields are required. The _Table Name_ must be at least two characters. The _Capacity_ must be at least 1. If any inputs are invalid the user will get an informative error message.  
 The **Seat Reservation** page allows a user to seat a specific reservation at a table in the restaurant. A drop-down list provides the table options. If a table is currently occupied or does not have sufficient capacity for that specific reservation, the user will get an informative error message.  
   
 ![new-table-photo](images/new-table.png) ![seat-reservation-photo](images/seat-reservation.png)
   
-## Backend - API
+## Backend
 
 ### Routes
 
@@ -81,6 +89,7 @@ Method | Route | Description
 | `DELETE` | `/tables/:table_id/seat` | Removes a reservation from a table and changes that reservation's `status` to _finished_.
 
 ### HTTP Methods
+
 | Route       | Get         | Put        | Post         | Delete       |      
 | ----------- | ----------- | ---------- | ------------ | ------------ |
 | ```/reservations```      | ✅      |❌      | ✅    |       ❌       |
